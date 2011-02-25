@@ -5,3 +5,6 @@
 * Doller 型を定義
 * create_doller() を実装
 * multiply() を実装
+* amount のプライベート蚊
+* Doller の副作用
+* Money の丸め処理
