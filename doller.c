@@ -12,5 +12,5 @@ create_doller( unsigned int amount ) {
 
 void
 multiply( Doller **doller, unsigned int multiplier ) {
-  ( *doller )->amount = ( *doller )->amount * 2;
+  ( *doller )->amount = ( *doller )->amount * multiplier;
 }
