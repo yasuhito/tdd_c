@@ -1,4 +1,4 @@
-= TODO
+# TODO
 
 * レートが 2:1 の場合、$5 + 10 CHF = $10
 * <strike>$5 * 2 = $10</strike>
