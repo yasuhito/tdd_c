@@ -8,5 +8,5 @@ doller.o: doller.c doller.h
 	gcc -Wall -c -o $@ $<
 
 clean:
-	rm *.o
-	rm test_multiply
+	-rm *.o
+	-rm test_multiply

@@ -1,4 +1,5 @@
 typedef struct {
+  unsigned int amount;
 } Doller;
 
 
