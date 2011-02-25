@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <stddef.h>
 #include <google/cmockery.h>
+#include "doller.h"
 
 
 static void
