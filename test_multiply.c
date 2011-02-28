@@ -10,11 +10,11 @@ static void
 test_multiply() {
   Doller *five = create_doller( 5 );
   Doller *product = multiply( &five, 2 );
-  assert_int_equal( 10, five->amount );
+  assert_int_equal( 10, product->amount );
   free( product );
 
   product = multiply( &five, 3 );
-  assert_int_equal( 15, five->amount );
+  assert_int_equal( 15, product->amount );
   free( product );
 
   free( five );
