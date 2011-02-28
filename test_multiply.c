@@ -11,6 +11,8 @@ test_multiply() {
   Doller *five = create_doller( 5 );
   multiply( &five, 2 );
   assert_int_equal( 10, five->amount );
+  multiply( &five, 3 );
+  assert_int_equal( 15, five->amount );
   free( five );
 }
 
