@@ -6,5 +6,5 @@
 * create_doller() を実装
 * multiply() を実装
 * amount のプライベート蚊
-* Doller の副作用
+* <del>Doller の副作用</del>
 * Money の丸め処理

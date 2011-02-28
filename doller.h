@@ -4,4 +4,4 @@ typedef struct {
 
 
 Doller *create_doller( unsigned int amount );
-void multiply( Doller **doller, unsigned int multiplier );
+Doller *multiply( const Doller *doller, unsigned int multiplier );

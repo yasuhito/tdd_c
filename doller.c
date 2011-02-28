@@ -10,7 +10,7 @@ create_doller( unsigned int amount ) {
 }
 
 
-void
-multiply( Doller **doller, unsigned int multiplier ) {
-  ( *doller )->amount *= multiplier;
+Doller *
+multiply( const Doller *doller, unsigned int multiplier ) {
+  return create_doller( doller->amount * multiplier );
 }
