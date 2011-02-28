@@ -1,10 +1,10 @@
-test_multiply: test_multiply.o doller.o
+test_multiply: test_multiply.o dollar.o
 	gcc -o $@ $^ -lcmockery
 
 test_multiply.o: test_multiply.c
 	gcc -Wall -c -o $@ $<
 
-doller.o: doller.c doller.h
+dollar.o: dollar.c dollar.h
 	gcc -Wall -c -o $@ $<
 
 clean:

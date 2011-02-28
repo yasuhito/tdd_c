@@ -3,13 +3,13 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <google/cmockery.h>
-#include "doller.h"
+#include "dollar.h"
 
 
 static void
 test_multiply() {
-  Doller *five = create_doller( 5 );
-  Doller *product = multiply( five, 2 );
+  Dollar *five = create_dollar( 5 );
+  Dollar *product = multiply( five, 2 );
   assert_int_equal( 10, product->amount );
   free( product );
 
