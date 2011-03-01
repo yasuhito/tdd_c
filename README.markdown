@@ -8,3 +8,5 @@
 * amount のプライベート蚊
 * <del>Dollar の副作用</del>
 * Money の丸め処理
+* equal() を実装
+* •hashCode() を実装
