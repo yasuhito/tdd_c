@@ -8,5 +8,7 @@
 * amount のプライベート蚊
 * <del>Dollar の副作用</del>
 * Money の丸め処理
-* equal() を実装
-* •hashCode() を実装
+* <del>equal() を実装</del>
+* hashCode() を実装
+* NULLとの等価性
+* Dollerオブジェクト以外のオブジェクトとの等価性
