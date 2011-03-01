@@ -23,9 +23,9 @@ test_multiply() {
 
 static void
 test_equal() {
-  Doller *five_1 = create_doller( 5 );
-  Doller *five_2 = create_doller( 5 );
-  Doller *six = create_doller( 6 );
+  Dollar *five_1 = create_dollar( 5 );
+  Dollar *five_2 = create_dollar( 5 );
+  Dollar *six = create_dollar( 6 );
 
   assert_true( equal( five_1, five_2 ) );
   assert_false( equal( five_1, six ) );
