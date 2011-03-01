@@ -5,7 +5,7 @@
 * Dollar 型を定義
 * create_dollar() を実装
 * multiply() を実装
-* amount のプライベート蚊
+* amount のプライベート化
 * <del>Dollar の副作用</del>
 * Money の丸め処理
 * <del>equal() を実装</del>
