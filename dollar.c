@@ -18,6 +18,6 @@ multiply( const Dollar *dollar, unsigned int multiplier ) {
 
 
 bool
-equal( Dollar *dollar_1, void *dollar_2 ) { 
-  return dollar_1->amount == ( ( Dollar * ) dollar_2 )->amount;
+equal( Dollar *dollar, void *other ) { 
+  return dollar->amount == ( ( Dollar * ) other )->amount;
 }
