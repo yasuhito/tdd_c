@@ -1,7 +1,7 @@
-test_multiply: test_multiply.o dollar.o
+test_dollar: test_dollar.o dollar.o
 	gcc -o $@ $^ -lcmockery
 
-test_multiply.o: test_multiply.c
+test_dollar.o: test_dollar.c
 	gcc -Wall -c -o $@ $<
 
 dollar.o: dollar.c dollar.h
@@ -9,4 +9,4 @@ dollar.o: dollar.c dollar.h
 
 clean:
 	-rm *.o *~
-	-rm test_multiply
+	-rm test_dollar
