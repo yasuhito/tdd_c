@@ -10,8 +10,10 @@ static void
 test_multiply() {
   Dollar *five = create_dollar( 5 );
   Dollar *product = multiply( five, 2 );
-  assert_int_equal( 10, product->amount );
+  Dollar *ten = create_dollar( 10 );
+  assert_true( equal( product, ten ) );
   free( product );
+  free( ten );
 
   product = multiply( five, 3 );
   assert_int_equal( 15, product->amount );
