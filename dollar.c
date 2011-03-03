@@ -4,12 +4,12 @@
 
 typedef struct {
   unsigned int amount;
-} Dollar;
+} DollarPrivate;
 
 
 Dollar *
 create_dollar( unsigned int amount ) {
-  Dollar *dollar = malloc( sizeof( Dollar ) );
+  DollarPrivate *dollar = malloc( sizeof( DollarPrivate ) );
   dollar->amount = amount;
   return dollar;
 }
