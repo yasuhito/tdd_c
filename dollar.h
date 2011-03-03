@@ -1,5 +1,6 @@
 #include <stdbool.h>
 
+typedef struct { } Dollar;
 
 Dollar *create_dollar( unsigned int amount );
 bool equal( const Dollar *dollar, const void *other );
