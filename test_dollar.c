@@ -16,10 +16,11 @@ test_multiply() {
   free( ten );
 
   product = multiply( five, 3 );
-  assert_int_equal( 15, product->amount );
+  Dollar *fifteen = create_dollar( 15 );
+  assert_true( equal( product, fifteen ) );
   free( product );
-
   free( five );
+  free( fifteen );
 }
 
 
