@@ -10,5 +10,5 @@
 * Money の丸め処理
 * <del>equal() を実装</del>
 * hashCode() を実装
-* NULLとの等価性
-* Dollerオブジェクト以外のオブジェクトとの等価性
+* NULL との等価性
+* Dollar オブジェクト以外のオブジェクトとの等価性
