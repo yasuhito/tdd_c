@@ -13,6 +13,6 @@
 * NULL との等価性
 * Dollar オブジェクト以外のオブジェクトとの等価性
 * <del>5 CHF * 2 = 10 CHF</del>
-* DollarとFrancの重複
-* equalsの一般化
-* timesの一般化
+* Dollar と Franc の重複
+* equals() の一般化
+* multiply() の一般化
