@@ -12,4 +12,7 @@
 * hashCode() を実装
 * NULL との等価性
 * Dollar オブジェクト以外のオブジェクトとの等価性
-* 5 CHF * 2 = 10 CHF
+* <del>5 CHF * 2 = 10 CHF</del>
+* DollarとFrancの重複
+* equalsの一般化
+* timesの一般化
