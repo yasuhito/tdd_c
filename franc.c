@@ -2,14 +2,9 @@
 #include "franc.h"
 
 
-typedef struct {
-  unsigned int amount;
-} FrancPrivate;
-
-
 Franc *
 create_franc( unsigned int amount ) {
-  FrancPrivate *franc = malloc( sizeof( FrancPrivate ) );
+  MoneyPrivate *franc = malloc( sizeof( MoneyPrivate ) );
   franc->amount = amount;
   return ( Franc * ) franc;
 }
@@ -17,11 +12,5 @@ create_franc( unsigned int amount ) {
 
 Franc *
 multiply( const Franc *franc, unsigned int multiplier ) {
-  return create_franc( ( ( FrancPrivate * ) franc )->amount * multiplier );
-}
-
-
-bool
-equal( const Franc *franc, const void *other ) {
-  return ( ( FrancPrivate * ) franc )->amount == ( ( FrancPrivate * ) other )->amount;
+  return create_franc( ( ( MoneyPrivate * ) franc )->amount * multiplier );
 }
