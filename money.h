@@ -3,4 +3,4 @@ typedef struct {
 
 typedef struct {
   unsigned int amount;
-} DollarPrivate;
+} MoneyPrivate;

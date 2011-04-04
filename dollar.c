@@ -4,7 +4,7 @@
 
 Dollar *
 create_dollar( unsigned int amount ) {
-  DollarPrivate *dollar = malloc( sizeof( DollarPrivate ) );
+  MoneyPrivate *dollar = malloc( sizeof( MoneyPrivate ) );
   dollar->amount = amount;
   return ( Dollar * ) dollar;
 }
@@ -12,11 +12,11 @@ create_dollar( unsigned int amount ) {
 
 Dollar *
 multiply( const Dollar *dollar, unsigned int multiplier ) {
-  return create_dollar( ( ( DollarPrivate * ) dollar )->amount * multiplier );
+  return create_dollar( ( ( MoneyPrivate * ) dollar )->amount * multiplier );
 }
 
 
 bool
 equal( const Dollar *dollar, const void *other ) {
-  return ( ( DollarPrivate * ) dollar )->amount == ( ( DollarPrivate * ) other )->amount;
+  return ( ( MoneyPrivate * ) dollar )->amount == ( ( MoneyPrivate * ) other )->amount;
 }
