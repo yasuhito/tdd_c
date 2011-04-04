@@ -15,7 +15,7 @@ franc.o: franc.c
 
 franc.o: franc.h
 
-test_dollar: test_dollar.o dollar.o
+test_dollar: test_dollar.o dollar.o money.o
 	gcc -o $@ $^ -lcmockery
 
 test_dollar.o: test_dollar.c
@@ -27,6 +27,11 @@ dollar.o: dollar.c
 	gcc -Wall -c -o $@ $<
 
 dollar.o: dollar.h money.h
+
+money.o: money.c
+	gcc -Wall -c -o $@ $<
+
+money.o: money.h
 
 
 clean:

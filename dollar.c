@@ -14,9 +14,3 @@ Dollar *
 multiply( const Dollar *dollar, unsigned int multiplier ) {
   return create_dollar( ( ( MoneyPrivate * ) dollar )->amount * multiplier );
 }
-
-
-bool
-equal( const Dollar *dollar, const void *other ) {
-  return ( ( MoneyPrivate * ) dollar )->amount == ( ( MoneyPrivate * ) other )->amount;
-}
