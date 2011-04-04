@@ -14,6 +14,8 @@
 * Dollar オブジェクト以外のオブジェクトとの等価性
 * <del>5 CHF * 2 = 10 CHF</del>
 * Dollar と Franc の重複
-* equals() の一般化
+* <del>equals() の一般化</del>
 * multiply() の一般化
 * MoneyPrivateのプライベート化
+* <strong>create_{dollar,franc} の一般化</strong>
+* <strong>MoneyPrivateのプライベート化</strong>
