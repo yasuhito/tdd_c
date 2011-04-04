@@ -16,3 +16,4 @@
 * Dollar と Franc の重複
 * equals() の一般化
 * multiply() の一般化
+* MoneyPrivateのプライベート化

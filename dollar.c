@@ -2,11 +2,6 @@
 #include "dollar.h"
 
 
-typedef struct {
-  unsigned int amount;
-} DollarPrivate;
-
-
 Dollar *
 create_dollar( unsigned int amount ) {
   DollarPrivate *dollar = malloc( sizeof( DollarPrivate ) );
