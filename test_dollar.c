@@ -36,16 +36,19 @@ test_multiply_5x3() {
 
 static void
 test_equal() {
-  Dollar *five1 = create_dollar( 5 );
-  Dollar *five2 = create_dollar( 5 );
-  Dollar *six = create_dollar( 6 );
+  Dollar *five_dollar1 = create_dollar( 5 );
+  Dollar *five_dollar2 = create_dollar( 5 );
+  Dollar *six_dollar = create_dollar( 6 );
+  Franc *five_franc = create_franc( 5 );
 
-  assert_true( equal( five1, five2 ) );
-  assert_false( equal( five1, six ) );
+  assert_true( equal( five_dollar1, five_dollar2 ) );
+  assert_false( equal( five_dollar1, six_dollar ) );
+  assert_false( equal( five_dollar1, five_franc ) );
 
-  free( five1 );
-  free( five2 );
-  free( six );
+  free( five_dollar1 );
+  free( five_dollar2 );
+  free( six_dollar );
+  free( five_franc );
 }
 
 
