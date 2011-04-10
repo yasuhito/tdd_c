@@ -17,5 +17,6 @@
 * <del>equals() の一般化</del>
 * multiply() の一般化
 * MoneyPrivateのプライベート化
-* <strong>create_{dollar,franc} の一般化</strong>
-* <strong>MoneyPrivateのプライベート化</strong>
+* create_{dollar,franc} の一般化
+* MoneyPrivateのプライベート化
+* FrancとDollarの比較
