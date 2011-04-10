@@ -19,4 +19,5 @@
 * MoneyPrivateのプライベート化
 * create_{dollar,franc} の一般化
 * MoneyPrivateのプライベート化
-* FrancとDollarの比較
+* <del>FrancとDollarの比較</del>
+* 通貨
