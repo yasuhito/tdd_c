@@ -15,7 +15,7 @@ franc.o: franc.c
 
 franc.o: franc.h money.h
 
-test_dollar: test_dollar.o dollar.o money.o
+test_dollar: test_dollar.o dollar.o franc.o money.o 
 	gcc -o $@ $^ -lcmockery
 
 test_dollar.o: test_dollar.c
