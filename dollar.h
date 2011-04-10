@@ -1,4 +1,7 @@
+#ifndef MONEY_H
+#define MONEY_H
 #include "money.h"
+#endif
 
 
 typedef struct {
