@@ -13,7 +13,7 @@ test_multiply_dollar_5x2() {
   Dollar *product = multiply_dollar( five, 2 );
   Dollar *ten = create_dollar( 10 );
 
-  assert_true( equal( product, ten ) );
+  assert_true( equal( product, USD, ten, USD ) );
 
   free( five );
   free( product );
@@ -27,7 +27,7 @@ test_multiply_dollar_5x3() {
   Dollar *product = multiply_dollar( five, 3 );
   Dollar *fifteen = create_dollar( 15 );
 
-  assert_true( equal( product, fifteen ) );
+  assert_true( equal( product, USD, fifteen, USD ) );
 
   free( five );
   free( product );
@@ -42,9 +42,9 @@ test_equal() {
   Dollar *six_dollar = create_dollar( 6 );
   Franc *five_franc = create_franc( 5 );
 
-  assert_true( equal( five_dollar1, five_dollar2 ) );
-  assert_false( equal( five_dollar1, six_dollar ) );
-  assert_false( equal( five_dollar1, five_franc ) );
+  assert_true( equal( five_dollar1, USD, five_dollar2, USD ) );
+  assert_false( equal( five_dollar1, USD, six_dollar, USD ) );
+  assert_false( equal( five_dollar1, USD, five_franc, CHF ) );
 
   free( five_dollar1 );
   free( five_dollar2 );

@@ -12,7 +12,7 @@ test_multiply_franc_5x2() {
   Franc *product = multiply_franc( five, 2 );
   Franc *ten = create_franc( 10 );
 
-  assert_true( equal( product, ten ) );
+  assert_true( equal( product, CHF, ten, CHF ) );
 
   free( five );
   free( product );
@@ -26,7 +26,7 @@ test_multiply_franc_5x3() {
   Franc *product = multiply_franc( five, 3 );
   Franc *fifteen = create_franc( 15 );
 
-  assert_true( equal( product, fifteen ) );
+  assert_true( equal( product, CHF, fifteen, CHF ) );
 
   free( five );
   free( product );
@@ -40,8 +40,8 @@ test_equal() {
   Franc *five2 = create_franc( 5 );
   Franc *six = create_franc( 6 );
 
-  assert_true( equal( five1, five2 ) );
-  assert_false( equal( five1, six ) );
+  assert_true( equal( five1, CHF, five2, CHF ) );
+  assert_false( equal( five1, CHF, six, CHF ) );
 
   free( five1 );
   free( five2 );
