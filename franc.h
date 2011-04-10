@@ -9,4 +9,4 @@ typedef struct {
 
 
 Franc *create_franc( unsigned int amount );
-Franc *multiply( const Franc *franc, unsigned int multiplier );
+Franc *multiply_franc( const Franc *franc, unsigned int multiplier );

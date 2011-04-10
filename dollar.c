@@ -11,6 +11,6 @@ create_dollar( unsigned int amount ) {
 
 
 Dollar *
-multiply( const Dollar *dollar, unsigned int multiplier ) {
+multiply_dollar( const Dollar *dollar, unsigned int multiplier ) {
   return create_dollar( ( ( MoneyPrivate * ) dollar )->amount * multiplier );
 }

@@ -7,9 +7,9 @@
 
 
 static void
-test_multiply_5x2() {
+test_multiply_franc_5x2() {
   Franc *five = create_franc( 5 );
-  Franc *product = multiply( five, 2 );
+  Franc *product = multiply_franc( five, 2 );
   Franc *ten = create_franc( 10 );
 
   assert_true( equal( product, ten ) );
@@ -21,9 +21,9 @@ test_multiply_5x2() {
 
 
 static void
-test_multiply_5x3() {
+test_multiply_franc_5x3() {
   Franc *five = create_franc( 5 );
-  Franc *product = multiply( five, 3 );
+  Franc *product = multiply_franc( five, 3 );
   Franc *fifteen = create_franc( 15 );
 
   assert_true( equal( product, fifteen ) );
@@ -52,8 +52,8 @@ test_equal() {
 int
 main() {
   const UnitTest tests[] = {
-    unit_test( test_multiply_5x2 ),
-    unit_test( test_multiply_5x3 ),
+    unit_test( test_multiply_franc_5x2 ),
+    unit_test( test_multiply_franc_5x3 ),
     unit_test( test_equal ),
   };
   return run_tests( tests );

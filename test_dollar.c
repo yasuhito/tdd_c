@@ -8,9 +8,9 @@
 
 
 static void
-test_multiply_5x2() {
+test_multiply_dollar_5x2() {
   Dollar *five = create_dollar( 5 );
-  Dollar *product = multiply( five, 2 );
+  Dollar *product = multiply_dollar( five, 2 );
   Dollar *ten = create_dollar( 10 );
 
   assert_true( equal( product, ten ) );
@@ -22,9 +22,9 @@ test_multiply_5x2() {
 
 
 static void
-test_multiply_5x3() {
+test_multiply_dollar_5x3() {
   Dollar *five = create_dollar( 5 );
-  Dollar *product = multiply( five, 3 );
+  Dollar *product = multiply_dollar( five, 3 );
   Dollar *fifteen = create_dollar( 15 );
 
   assert_true( equal( product, fifteen ) );
@@ -56,8 +56,8 @@ test_equal() {
 int
 main() {
   const UnitTest tests[] = {
-    unit_test( test_multiply_5x2 ),
-    unit_test( test_multiply_5x3 ),
+    unit_test( test_multiply_dollar_5x2 ),
+    unit_test( test_multiply_dollar_5x3 ),
     unit_test( test_equal ),
   };
   return run_tests( tests );

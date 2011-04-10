@@ -11,6 +11,6 @@ create_franc( unsigned int amount ) {
 
 
 Franc *
-multiply( const Franc *franc, unsigned int multiplier ) {
+multiply_franc( const Franc *franc, unsigned int multiplier ) {
   return create_franc( ( ( MoneyPrivate * ) franc )->amount * multiplier );
 }
