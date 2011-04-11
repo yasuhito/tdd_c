@@ -1,3 +1,5 @@
+#ifndef MONEY_H
+#define MONEY_H
 #include <stdbool.h>
 
 typedef struct {
@@ -13,3 +15,5 @@ typedef enum {
 } CurrencyType;  
 
 bool equal( const void *money, CurrencyType money_type, const void *other, CurrencyType other_type );
+
+#endif
