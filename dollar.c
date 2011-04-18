@@ -2,15 +2,7 @@
 #include "dollar.h"
 
 
-Dollar *
-create_dollar( unsigned int amount ) {
-  MoneyPrivate *dollar = malloc( sizeof( MoneyPrivate ) );
-  dollar->amount = amount;
-  return ( Dollar * ) dollar;
-}
-
-
-Dollar *
+Money *
 multiply_dollar( const Dollar *dollar, unsigned int multiplier ) {
-  return create_dollar( ( ( MoneyPrivate * ) dollar )->amount * multiplier );
+  return (Money *) create_dollar( ( ( MoneyPrivate * ) dollar )->amount * multiplier );
 }
