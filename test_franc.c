@@ -8,9 +8,9 @@
 
 static void
 test_multiply_franc_5x2() {
-  Franc *five = create_franc( 5 );
-  Franc *product = multiply_franc( five, 2 );
-  Franc *ten = create_franc( 10 );
+  Money *five = create_franc( 5 );
+  Money *product = multiply_money( five, CHF, 2 );
+  Money *ten = create_franc( 10 );
 
   assert_true( equal( product, CHF, ten, CHF ) );
 
@@ -22,9 +22,9 @@ test_multiply_franc_5x2() {
 
 static void
 test_multiply_franc_5x3() {
-  Franc *five = create_franc( 5 );
-  Franc *product = multiply_franc( five, 3 );
-  Franc *fifteen = create_franc( 15 );
+  Money *five = create_franc( 5 );
+  Money *product = multiply_money( five, CHF, 3 );
+  Money *fifteen = create_franc( 15 );
 
   assert_true( equal( product, CHF, fifteen, CHF ) );
 
@@ -36,9 +36,9 @@ test_multiply_franc_5x3() {
 
 static void
 test_equal() {
-  Franc *five1 = create_franc( 5 );
-  Franc *five2 = create_franc( 5 );
-  Franc *six = create_franc( 6 );
+  Money *five1 = create_franc( 5 );
+  Money *five2 = create_franc( 5 );
+  Money *six = create_franc( 6 );
 
   assert_true( equal( five1, CHF, five2, CHF ) );
   assert_false( equal( five1, CHF, six, CHF ) );
