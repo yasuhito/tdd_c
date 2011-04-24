@@ -4,26 +4,32 @@
 #include "dollar.h"
 #include "franc.h"
 #include "money.h"
+#include "money_private.h"
 
 
 Money *
-create_dollar( unsigned int amount ) {
-  MoneyPrivate *dollar = malloc( sizeof( MoneyPrivate ) );
-  dollar->amount = amount;
-  return ( Money * ) dollar;
+franc( unsigned int amount ) {
+  return ( Money * ) create_franc( amount, CHF );
 }
 
 
 Money *
-create_franc( unsigned int amount ) {
-  MoneyPrivate *franc = malloc( sizeof( MoneyPrivate ) );
-  franc->amount = amount;
-  return ( Money * ) franc;
+dollar( unsigned int amount ) {
+  return ( Money * ) create_dollar( amount, USD );
 }
 
 
 Money *
-multiply_money( Money * money, Currency currency, int multiplier ){
+create_money( unsigned int amount, Currency currency ) {
+  MoneyPrivate *money = malloc( sizeof( MoneyPrivate ) );
+  money->amount = amount;
+  money->currency = currency;
+  return ( Money * ) money;
+}
+
+
+Money *
+multiply( Money * money, Currency currency, int multiplier ){
   switch( currency ){
     case USD:
       return multiply_dollar( ( Dollar * ) money, multiplier );
@@ -33,6 +39,12 @@ multiply_money( Money * money, Currency currency, int multiplier ){
       // We should not reach here.
       assert( false );
   }
+}
+
+
+Currency
+currency_of( const Money *money ) {
+  return ( ( MoneyPrivate * ) money )->currency;
 }
 
 

@@ -9,20 +9,17 @@ typedef struct {
 } Money;
 
 
-typedef struct {
-  unsigned int amount;
-} MoneyPrivate;
-
-
 typedef enum {
   USD,
   CHF,
 } Currency;
 
 
-Money *create_dollar( unsigned int amount );
-Money *create_franc( unsigned int amount );
-Money * multiply_money( Money *money, Currency currency, int multiplier );
+Money *franc( unsigned int amount );
+Money *dollar( unsigned int amount );
+Money *create_money( unsigned int amount, Currency currency );
+Money *multiply( Money *money, Currency currency, int multiplier );
+Currency currency_of( const Money *money );
 bool equal( const void *money, Currency currency, const void *other, Currency other_currency );
 
 
