@@ -30,15 +30,7 @@ create_money( unsigned int amount, Currency currency ) {
 
 Money *
 multiply( Money * money, Currency currency, int multiplier ){
-  switch( currency ){
-    case USD:
-      return multiply_dollar( ( Dollar * ) money, multiplier );
-    case CHF:
-      return multiply_franc( ( Franc * ) money, multiplier );
-    default:
-      // We should not reach here.
-      assert( false );
-  }
+  return create_money( ( ( MoneyPrivate * ) money )->amount * multiplier, currency);
 }
 
 

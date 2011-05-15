@@ -9,8 +9,3 @@ create_dollar( unsigned int amount, Currency currency ) {
 }
 
 
-Money *
-multiply_dollar( const Dollar *_dollar, unsigned int multiplier ) {
-  Currency currency = USD;
-  return ( Money * ) create_dollar( ( ( MoneyPrivate * ) _dollar )->amount * multiplier, currency);
-}
