@@ -4,6 +4,7 @@
 #include "money_private.h"
 
 
+
 Franc *
 create_franc( unsigned int amount, Currency currency ) {
   return ( Franc * ) create_money( amount, currency );
@@ -12,5 +13,7 @@ create_franc( unsigned int amount, Currency currency ) {
 
 Money *
 multiply_franc( const Franc *_franc, unsigned int multiplier ) {
-  return ( Money * ) create_franc( ( ( MoneyPrivate * )  _franc )->amount * multiplier, CHF);
+  Currency currency = CHF;
+  return ( Money * ) 
+    create_franc( ( ( MoneyPrivate * )  _franc )->amount * multiplier, currency);
 }
