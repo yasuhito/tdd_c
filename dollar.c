@@ -8,4 +8,3 @@ create_dollar( unsigned int amount, Currency currency ) {
   return ( Dollar * ) create_money( amount, currency );
 }
 
-

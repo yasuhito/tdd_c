@@ -6,3 +6,4 @@ typedef struct {
 
 
 Dollar *create_dollar( unsigned int amount, Currency currency );
+

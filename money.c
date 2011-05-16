@@ -29,8 +29,8 @@ create_money( unsigned int amount, Currency currency ) {
 
 
 Money *
-multiply( Money * money, Currency currency, int multiplier ){
-  return create_money( ( ( MoneyPrivate * ) money )->amount * multiplier, currency);
+multiply( Money * money, int multiplier ){
+  return create_money( ( ( MoneyPrivate * ) money )->amount * multiplier, ( ( MoneyPrivate * ) money )->currency );
 }
 
 
@@ -41,7 +41,7 @@ currency_of( const Money *money ) {
 
 
 bool
-equal( const void *money, Currency currency, const void *other, Currency other_currency ) {
+equal( const void *money, const void *other ) {
   return ( ( ( MoneyPrivate * ) money )->amount == ( ( MoneyPrivate * ) other )->amount ) 
-    && ( currency == other_currency );
+    && ( ( ( MoneyPrivate * ) money )->currency == ( ( MoneyPrivate * ) other )->currency );
 }
