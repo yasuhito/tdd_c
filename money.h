@@ -18,9 +18,9 @@ typedef enum {
 Money *franc( unsigned int amount );
 Money *dollar( unsigned int amount );
 Money *create_money( unsigned int amount, Currency currency );
-Money *multiply( Money *money, Currency currency, int multiplier );
+Money *multiply( Money *money, int multiplier );
 Currency currency_of( const Money *money );
-bool equal( const void *money, Currency currency, const void *other, Currency other_currency );
+bool equal( const void *money, const void *other );
 
 
 #endif // MONEY_H

@@ -8,8 +8,3 @@ create_dollar( unsigned int amount, Currency currency ) {
   return ( Dollar * ) create_money( amount, currency );
 }
 
-
-Money *
-multiply_dollar( const Dollar *_dollar, unsigned int multiplier ) {
-  return dollar( ( ( MoneyPrivate * ) _dollar )->amount * multiplier );
-}

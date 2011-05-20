@@ -9,10 +9,10 @@
 static void
 test_multiply_franc_5x2() {
   Money *five = franc( 5 );
-  Money *product = multiply( five, CHF, 2 );
+  Money *product = multiply( five, 2 );
   Money *ten = franc( 10 );
 
-  assert_true( equal( product, CHF, ten, CHF ) );
+  assert_true( equal( product, ten ) );
 
   free( five );
   free( product );
@@ -23,10 +23,10 @@ test_multiply_franc_5x2() {
 static void
 test_multiply_franc_5x3() {
   Money *five = franc( 5 );
-  Money *product = multiply( five, CHF, 3 );
+  Money *product = multiply( five, 3 );
   Money *fifteen = franc( 15 );
 
-  assert_true( equal( product, CHF, fifteen, CHF ) );
+  assert_true( equal( product, fifteen ) );
 
   free( five );
   free( product );
@@ -40,14 +40,20 @@ test_equal() {
   Money *five2 = franc( 5 );
   Money *six = franc( 6 );
 
-  assert_true( equal( five1, CHF, five2, CHF ) );
-  assert_false( equal( five1, CHF, six, CHF ) );
+  assert_true( equal( five1, five2 ) );
+  assert_false( equal( five1, six ) );
 
   free( five1 );
   free( five2 );
   free( six );
 }
 
+static void 
+test_different_class_equality(){
+  Money *tenmoney = create_money(10, CHF);
+  Franc *tenfranc = create_franc(10, CHF);
+  assert_true( equal( tenmoney, tenfranc ) );
+}
 
 int
 main() {
@@ -55,6 +61,7 @@ main() {
     unit_test( test_multiply_franc_5x2 ),
     unit_test( test_multiply_franc_5x3 ),
     unit_test( test_equal ),
+    unit_test( test_different_class_equality)
   };
   return run_tests( tests );
 }
