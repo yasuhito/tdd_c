@@ -29,16 +29,8 @@ create_money( unsigned int amount, Currency currency ) {
 
 
 Money *
-multiply( Money * money, Currency currency, int multiplier ){
-  switch( currency ){
-    case USD:
-      return multiply_dollar( ( Dollar * ) money, multiplier );
-    case CHF:
-      return multiply_franc( ( Franc * ) money, multiplier );
-    default:
-      // We should not reach here.
-      assert( false );
-  }
+multiply( Money * money, int multiplier ){
+  return create_money( ( ( MoneyPrivate * ) money )->amount * multiplier, ( ( MoneyPrivate * ) money )->currency );
 }
 
 
@@ -49,7 +41,7 @@ currency_of( const Money *money ) {
 
 
 bool
-equal( const void *money, Currency currency, const void *other, Currency other_currency ) {
+equal( const void *money, const void *other ) {
   return ( ( ( MoneyPrivate * ) money )->amount == ( ( MoneyPrivate * ) other )->amount ) 
-    && ( currency == other_currency );
+    && ( ( ( MoneyPrivate * ) money )->currency == ( ( MoneyPrivate * ) other )->currency );
 }
