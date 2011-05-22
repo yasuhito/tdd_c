@@ -1,14 +1,6 @@
-all: test_franc test_dollar test_currency
-	./test_franc
+all: test_dollar test_currency
 	./test_dollar
 	./test_currency
-
-
-test_franc: test_franc.o money.o
-	gcc -o $@ $^ -lcmockery
-
-test_franc.o: test_franc.c money.h
-	gcc -Wall -Werror -c -o $@ $<
 
 
 test_dollar: test_dollar.o money.o 
@@ -33,4 +25,3 @@ clean:
 	-rm *.o *~
 	-rm test_currency
 	-rm test_dollar
-	-rm test_franc
