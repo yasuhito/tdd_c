@@ -34,20 +34,6 @@ test_multiply_franc_5x3() {
 }
 
 
-static void
-test_equal() {
-  Money *five1 = franc( 5 );
-  Money *five2 = franc( 5 );
-  Money *six = franc( 6 );
-
-  assert_true( equal( five1, five2 ) );
-  assert_false( equal( five1, six ) );
-
-  free( five1 );
-  free( five2 );
-  free( six );
-}
-
 static void 
 test_different_class_equality() {
   Money *tenmoney = create_money(10, CHF);
@@ -60,7 +46,6 @@ main() {
   const UnitTest tests[] = {
     unit_test( test_multiply_franc_5x2 ),
     unit_test( test_multiply_franc_5x3 ),
-    unit_test( test_equal ),
     unit_test( test_different_class_equality)
   };
   return run_tests( tests );
