@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include <assert.h>
-#include "franc.h"
 #include "money.h"
 #include "money_private.h"
 

@@ -4,24 +4,21 @@ all: test_franc test_dollar test_currency
 	./test_currency
 
 
-test_franc: test_franc.o franc.o money.o
+test_franc: test_franc.o money.o
 	gcc -o $@ $^ -lcmockery
 
-test_franc.o: test_franc.c franc.h money.h
-	gcc -Wall -Werror -c -o $@ $<
-
-franc.o: franc.c franc.h money.h
+test_franc.o: test_franc.c money.h
 	gcc -Wall -Werror -c -o $@ $<
 
 
-test_dollar: test_dollar.o franc.o money.o 
+test_dollar: test_dollar.o money.o 
 	gcc -Wall -Werror -o $@ $^ -lcmockery
 
 test_dollar.o: test_dollar.c money.h
 	gcc -Wall -Werror -c -o $@ $<
 
 
-test_currency: test_currency.o money.o franc.o
+test_currency: test_currency.o money.o
 	gcc -Wall -Werror -o $@ $^ -lcmockery
 
 test_currency.o: test_currency.c
