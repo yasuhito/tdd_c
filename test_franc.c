@@ -49,7 +49,7 @@ test_equal() {
 }
 
 static void 
-test_different_class_equality(){
+test_different_class_equality() {
   Money *tenmoney = create_money(10, CHF);
   Franc *tenfranc = create_franc(10, CHF);
   assert_true( equal( tenmoney, tenfranc ) );
