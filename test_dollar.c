@@ -3,7 +3,6 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <google/cmockery.h>
-#include "dollar.h"
 #include "franc.h"
 
 
