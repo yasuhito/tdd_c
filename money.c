@@ -9,13 +9,13 @@
 
 Money *
 franc( unsigned int amount ) {
-  return ( Money * ) create_franc( amount, CHF );
+  return ( Money * ) create_money( amount, CHF );
 }
 
 
 Money *
 dollar( unsigned int amount ) {
-  return ( Money * ) create_dollar( amount, USD );
+  return ( Money * ) create_money( amount, USD );
 }
 
 
