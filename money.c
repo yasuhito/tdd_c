@@ -27,7 +27,7 @@ create_money( unsigned int amount, Currency currency ) {
 
 
 Money *
-multiply( Money * money, int multiplier ){
+multiply( Money * money, int multiplier ) {
   return create_money( ( ( MoneyPrivate * ) money )->amount * multiplier, ( ( MoneyPrivate * ) money )->currency );
 }
 
