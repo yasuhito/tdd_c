@@ -1,21 +1,19 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include <assert.h>
-#include "dollar.h"
-#include "franc.h"
 #include "money.h"
 #include "money_private.h"
 
 
 Money *
 franc( unsigned int amount ) {
-  return ( Money * ) create_franc( amount, CHF );
+  return ( Money * ) create_money( amount, CHF );
 }
 
 
 Money *
 dollar( unsigned int amount ) {
-  return ( Money * ) create_dollar( amount, USD );
+  return ( Money * ) create_money( amount, USD );
 }
 
 
@@ -29,7 +27,7 @@ create_money( unsigned int amount, Currency currency ) {
 
 
 Money *
-multiply( Money * money, int multiplier ){
+multiply( Money * money, int multiplier ) {
   return create_money( ( ( MoneyPrivate * ) money )->amount * multiplier, ( ( MoneyPrivate * ) money )->currency );
 }
 
