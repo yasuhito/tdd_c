@@ -56,14 +56,16 @@ static void
 test_simple_addition() {
   Money *five = dollar( 5 );
   Money *addend_five = dollar( 5 );
-  Money *sum = plus( five, addend_five );
   Money *ten = dollar( 10 );
 
-  assert_true( equal( ten, sum ) );
+  Expression *sum = plus( five, addend_five );
+  Money *reduced = reduce( sum, USD );
+  assert_true( equal( ten, reduced ) );
 
   free( five );
   free( addend_five );
   free( sum );
+  free( reduced );
   free( ten );
 }
 
