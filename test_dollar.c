@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <google/cmockery.h>
 #include "money.h"
+#include "bank.h"
 
 
 static void

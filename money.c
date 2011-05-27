@@ -45,7 +45,7 @@ equal( const void *money, const void *other ) {
 }
 
 
-Money *
+Expression *
 plus( Money *money, Money *addend_money ) {
-  return create_money( ( ( MoneyPrivate * ) money )->amount + ( ( MoneyPrivate * ) addend_money )->amount, ( ( MoneyPrivate * ) money )->currency );
+  return ( Expression * ) create_money( ( ( MoneyPrivate * ) money )->amount + ( ( MoneyPrivate * ) addend_money )->amount, ( ( MoneyPrivate * ) money )->currency );
 }
