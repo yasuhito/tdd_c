@@ -2,5 +2,5 @@
 
 Money *
 reduce( Expression *source, Currency to ) {
-  return dollar(10);
+  return dollar( 10 );
 }
