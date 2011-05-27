@@ -43,3 +43,9 @@ equal( const void *money, const void *other ) {
   return ( ( ( MoneyPrivate * ) money )->amount == ( ( MoneyPrivate * ) other )->amount ) 
     && ( ( ( MoneyPrivate * ) money )->currency == ( ( MoneyPrivate * ) other )->currency );
 }
+
+
+Money *
+plus( Money *money, Money *addend_money ) {
+  return create_money( ( ( MoneyPrivate * ) money )->amount + ( ( MoneyPrivate * ) addend_money )->amount, ( ( MoneyPrivate * ) money )->currency );
+}
