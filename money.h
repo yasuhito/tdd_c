@@ -18,10 +18,10 @@ typedef enum {
 Money *franc( unsigned int amount );
 Money *dollar( unsigned int amount );
 Money *create_money( unsigned int amount, Currency currency );
+Expression *plus( const Money *money, const Money *addend_money );
 Money *multiply( Money *money, int multiplier );
 Currency currency_of( const Money *money );
 bool equal( const void *money, const void *other );
-Expression *plus( Money *money, Money *addend_money );
 
 
 #endif // MONEY_H

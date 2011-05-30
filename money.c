@@ -26,6 +26,12 @@ create_money( unsigned int amount, Currency currency ) {
 }
 
 
+Expression *
+plus( const Money *money, const Money *addend_money ) {
+  return ( Expression * ) create_money( ( ( MoneyPrivate * ) money )->amount + ( ( MoneyPrivate * ) addend_money )->amount, ( ( MoneyPrivate * ) money )->currency );
+}
+
+
 Money *
 multiply( Money * money, int multiplier ) {
   return create_money( ( ( MoneyPrivate * ) money )->amount * multiplier, ( ( MoneyPrivate * ) money )->currency );
@@ -42,10 +48,4 @@ bool
 equal( const void *money, const void *other ) {
   return ( ( ( MoneyPrivate * ) money )->amount == ( ( MoneyPrivate * ) other )->amount ) 
     && ( ( ( MoneyPrivate * ) money )->currency == ( ( MoneyPrivate * ) other )->currency );
-}
-
-
-Expression *
-plus( Money *money, Money *addend_money ) {
-  return ( Expression * ) create_money( ( ( MoneyPrivate * ) money )->amount + ( ( MoneyPrivate * ) addend_money )->amount, ( ( MoneyPrivate * ) money )->currency );
 }
