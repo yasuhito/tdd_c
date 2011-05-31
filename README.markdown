@@ -1,6 +1,7 @@
 # TODO
 
 * レートが 2:1 の場合、$5 + 10 CHF = $10
+* $5 + $5 = $10
 * <del>$5 * 2 = $10</del>
 * <del>Dollar 型を定義</del>
 * <del>create_dollar() を実装</del>
