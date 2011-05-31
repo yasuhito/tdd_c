@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <google/cmockery.h>
 #include "money.h"
+#include "bank.h"
 
 
 static void
@@ -52,12 +53,31 @@ test_equal() {
 }
 
 
+static void
+test_simple_addition() {
+  Money *five = dollar( 5 );
+  Money *addend_five = dollar( 5 );
+  Money *ten = dollar( 10 );
+
+  Expression *sum = plus( five, addend_five );
+  Money *reduced = reduce( sum, USD );
+  assert_true( equal( ten, reduced ) );
+
+  free( five );
+  free( addend_five );
+  free( sum );
+  free( reduced );
+  free( ten );
+}
+
+
 int
 main() {
   const UnitTest tests[] = {
     unit_test( test_multiply_dollar_5x2 ),
     unit_test( test_multiply_dollar_5x3 ),
     unit_test( test_equal ),
+    unit_test( test_simple_addition ),
   };
   return run_tests( tests );
 }
