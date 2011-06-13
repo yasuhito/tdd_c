@@ -1,19 +1,20 @@
 #ifndef MONEY_H
 #define MONEY_H
 
-
 #include <stdbool.h>
-#include "expression.h"
 
 typedef struct {
 } Money;
-
 
 typedef enum {
   USD,
   CHF,
 } Currency;
 
+typedef struct Expression{
+	void* exp;
+	Money* ( *reduce )( struct Expression *exp, Currency to );
+} Expression;
 
 Money *franc( unsigned int amount );
 Money *dollar( unsigned int amount );
