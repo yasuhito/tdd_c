@@ -12,8 +12,8 @@ typedef enum {
 } Currency;
 
 typedef struct Expression{
-	void* exp;
-	Money* ( *reduce )( struct Expression *exp, Currency to );
+  void* exp;
+  Money* ( *reduce )( struct Expression *exp, Currency to );
 } Expression;
 
 Money *franc( unsigned int amount );
