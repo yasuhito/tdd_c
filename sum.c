@@ -4,7 +4,7 @@
 #include "money_protected.h"
 
 static Money *
-sum_reduce(struct Expression *exp, Currency to){
+reduce_sum( struct Expression *exp, Currency to ){
   Sum *sum = exp->exp;
   int amount1, amount2, add_amount;
   amount1 = ( ( MoneyProtected * ) ( sum->augend ) )->amount;
@@ -16,12 +16,12 @@ sum_reduce(struct Expression *exp, Currency to){
 Expression *
 create_sum( const Money *augend, const Money *addend) {
   Expression *result = ( Expression * ) malloc( sizeof ( Expression ) );
-  Sum *sum = (Sum *) malloc ( sizeof ( Sum ) ) ;
+  Sum *sum = ( Sum * ) malloc ( sizeof ( Sum ) ) ;
   sum->augend = augend;
   sum->addend = addend;
 
   result->exp = sum;
-  result->reduce = sum_reduce;
+  result->reduce = reduce_sum;
 
   return result;
 }

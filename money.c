@@ -51,7 +51,7 @@ equal( const void *money, const void *other ) {
 }
 
 static Money *
-money_reduce(struct Expression *exp, Currency to){
+reduce_money(struct Expression *exp, Currency to){
   Money *money = exp->exp;
   return money;
 }
@@ -59,9 +59,9 @@ money_reduce(struct Expression *exp, Currency to){
 Expression *
 create_money_expression( Money *money ){
   Expression *result;
-  result = (Expression *) malloc( sizeof( Expression ) );
+  result = ( Expression * ) malloc( sizeof( Expression ) );
   result->exp = money;
-  result->reduce = money_reduce;
+  result->reduce = reduce_money;
 
   return result;
 }
