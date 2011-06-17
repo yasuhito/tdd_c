@@ -60,7 +60,7 @@ test_simple_addition() {
   Money *ten = dollar( 10 );
 
   Expression *sum = plus( five, addend_five );
-  Money *reduced = reduce( sum, USD );
+  Money *reduced = bank_reduce( sum, USD );
   assert_true( equal( ten, reduced ) );
 
   free( five );
