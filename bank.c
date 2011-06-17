@@ -1,6 +1,9 @@
 #include "bank.h"
+#include "money.h"
 
 Money *
-reduce( Expression *source, Currency to ) {
-  return dollar( 10 );
+bank_reduce( Expression *source, Currency to ) {
+  return source->reduce(source, to);
 }
+
+

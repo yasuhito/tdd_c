@@ -2,8 +2,8 @@
 #include <stddef.h>
 #include <assert.h>
 #include "money.h"
-#include "money_private.h"
-
+#include "money_protected.h"
+#include "sum.h"
 
 Money *
 franc( unsigned int amount ) {
@@ -19,7 +19,7 @@ dollar( unsigned int amount ) {
 
 Money *
 create_money( unsigned int amount, Currency currency ) {
-  MoneyPrivate *money = malloc( sizeof( MoneyPrivate ) );
+  MoneyProtected *money = malloc( sizeof( MoneyProtected ) );
   money->amount = amount;
   money->currency = currency;
   return ( Money * ) money;
@@ -28,24 +28,40 @@ create_money( unsigned int amount, Currency currency ) {
 
 Expression *
 plus( const Money *money, const Money *addend_money ) {
-  return ( Expression * ) create_money( ( ( MoneyPrivate * ) money )->amount + ( ( MoneyPrivate * ) addend_money )->amount, ( ( MoneyPrivate * ) money )->currency );
+  Expression *sum = create_sum( money, addend_money );
+  return sum;
 }
-
 
 Money *
 multiply( Money * money, int multiplier ) {
-  return create_money( ( ( MoneyPrivate * ) money )->amount * multiplier, ( ( MoneyPrivate * ) money )->currency );
+  return create_money( ( ( MoneyProtected * ) money )->amount * multiplier, ( ( MoneyProtected * ) money )->currency );
 }
 
 
 Currency
 currency_of( const Money *money ) {
-  return ( ( MoneyPrivate * ) money )->currency;
+  return ( ( MoneyProtected * ) money )->currency;
 }
 
 
 bool
 equal( const void *money, const void *other ) {
-  return ( ( ( MoneyPrivate * ) money )->amount == ( ( MoneyPrivate * ) other )->amount ) 
-    && ( ( ( MoneyPrivate * ) money )->currency == ( ( MoneyPrivate * ) other )->currency );
+  return ( ( ( MoneyProtected * ) money )->amount == ( ( MoneyProtected * ) other )->amount ) 
+    && ( ( ( MoneyProtected * ) money )->currency == ( ( MoneyProtected * ) other )->currency );
+}
+
+static Money *
+reduce_money(struct Expression *exp, Currency to){
+  Money *money = exp->exp;
+  return money;
+}
+
+Expression *
+create_money_expression( Money *money ){
+  Expression *result;
+  result = ( Expression * ) malloc( sizeof( Expression ) );
+  result->exp = money;
+  result->reduce = reduce_money;
+
+  return result;
 }
