@@ -26,6 +26,23 @@ create_money( unsigned int amount, Currency currency ) {
 }
 
 
+static Money *
+reduce_money( struct Expression *exp, Currency to ) {
+  MoneyProtected *money = exp->exp;
+  int rate = money->currency == CHF && to == USD ? 2 : 1;
+  return create_money( money->amount / rate, to );
+}
+
+
+Expression *
+expression_from( const Money *money ) {
+  Expression *result = ( Expression * ) malloc( sizeof( Expression ) );
+  result->exp = ( void * ) money;
+  result->reduce = reduce_money;
+  return result;
+}
+
+
 Expression *
 plus( const Money *money, const Money *addend_money ) {
   Expression *sum = create_sum( money, addend_money );
@@ -50,11 +67,6 @@ equal( const void *money, const void *other ) {
     && ( ( ( MoneyProtected * ) money )->currency == ( ( MoneyProtected * ) other )->currency );
 }
 
-static Money *
-reduce_money(struct Expression *exp, Currency to){
-  Money *money = exp->exp;
-  return money;
-}
 
 Expression *
 create_money_expression( Money *money ){

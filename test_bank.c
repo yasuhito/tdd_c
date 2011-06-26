@@ -42,11 +42,27 @@ test_reduce_sum() {
 }
 
 
+static void
+test_reduce_different_currency() {
+  Money *two_franc = franc( 2 );
+  Money *one_dollar = dollar( 1 );
+
+  add_rate( CHF, USD, 2 );
+  Expression *exp_two_franc = expression_from( two_franc );
+  Money *result = bank_reduce( exp_two_franc, USD );
+  assert_true( equal( result, one_dollar ) );
+
+  free( two_franc );
+  free( one_dollar );
+}
+
+
 int
 main() {
   const UnitTest tests[] = {
     unit_test( test_plus_returns_sum ),
     unit_test( test_reduce_sum ),
+    unit_test( test_reduce_different_currency ),
   };
   return run_tests( tests );
 }

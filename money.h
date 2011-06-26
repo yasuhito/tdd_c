@@ -11,14 +11,15 @@ typedef enum {
   CHF,
 } Currency;
 
-typedef struct Expression{
-  void* exp;
+typedef struct Expression {
+  void *exp;
   Money* ( *reduce )( struct Expression *exp, Currency to );
 } Expression;
 
 Money *franc( unsigned int amount );
 Money *dollar( unsigned int amount );
 Money *create_money( unsigned int amount, Currency currency );
+Expression *expression_from( const Money *money );
 Expression *plus( const Money *money, const Money *addend_money );
 Money *multiply( Money *money, int multiplier );
 Currency currency_of( const Money *money );
