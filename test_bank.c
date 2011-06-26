@@ -3,9 +3,10 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <google/cmockery.h>
-#include "money.h"
 #include "bank.h"
+#include "money.h"
 #include "sum.h"
+
 
 static void
 test_plus_returns_sum() {
@@ -13,14 +14,15 @@ test_plus_returns_sum() {
   Money *addend_five = dollar( 5 );
 
   Expression *result = plus( five, addend_five );
-  Sum *sum = (Sum *) result->exp;
-  assert_true(equal(five, sum->augend) );
-  assert_true(equal(addend_five, sum->addend) );
+  Sum *sum = ( Sum * ) result->exp;
+  assert_true( equal( five, sum->augend ) );
+  assert_true( equal( addend_five, sum->addend ) );
 
   free( five );
   free( addend_five );
   free( result);
 }
+
 
 static void
 test_reduce_sum() {
@@ -30,15 +32,15 @@ test_reduce_sum() {
 
   Expression *exp = plus( three_usd, four_usd );
   Money *result = bank_reduce( exp , USD );
-  assert_true(equal(result, seven_usd ));
+  assert_true( equal( result, seven_usd ) );
 
   free( three_usd );
   free( four_usd );
   free( seven_usd );
   free( exp );
   free( result );
-
 }
+
 
 int
 main() {
