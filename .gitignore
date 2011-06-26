@@ -1,5 +1,6 @@
 *.o
 *~
+.depends
 test_bank
 test_currency
 test_dollar

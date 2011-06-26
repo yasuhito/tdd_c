@@ -1,44 +1,45 @@
 CC = gcc
 CFLAGS = -Wall -Werror
+LDFLAGS = -lcmockery
+TARGETS = test_bank test_dollar test_currency 
+
+SRCS_TEST_BANK = test_bank.c money.c bank.c sum.c
+SRCS_TEST_DOLLAR = test_dollar.c money.c bank.c sum.c
+SRCS_TEST_CURRENCY = test_currency.c money.c sum.c
+SRCS = $(SRCS_TEST_BANK) $(SRCS_TEST_DOLLAR) $(SRCS_TEST_CURRENCY)
+
+OBJS_TEST_BANK = $(SRCS_TEST_BANK:.c=.o)
+OBJS_TEST_DOLLAR = $(SRCS_TEST_DOLLAR:.c=.o)
+OBJS_TEST_CURRENCY = $(SRCS_TEST_CURRENCY:.c=.o)
+OBJS = $(OBJS_TEST_BANK) $(OBJS_TEST_DOLLAR) $(OBJS_TEST_CURRENCY)
+
+DEPENDS = .depends
 
 
-all: test_dollar test_currency test_bank
+all: depend $(TARGETS)
 	./test_dollar
 	./test_currency
 	./test_bank
 
 
-test_bank: test_bank.o money.o bank.o sum.o
-	$(CC) $(CFLAGS) -o $@ $^ -lcmockery
+test_bank: $(OBJS_TEST_BANK)
+	$(CC) $(CFLAGS) -o $@ $(OBJS_TEST_BANK) $(LDFLAGS)
 
-test_bank.o: test_bank.c money.h bank.h sum.h
-	$(CC) $(CFLAGS) -c -o $@ $<
+test_dollar: $(OBJS_TEST_DOLLAR)
+	$(CC) $(CFLAGS) -o $@ $(OBJS_TEST_DOLLAR) $(LDFLAGS)
 
-test_dollar: test_dollar.o money.o bank.o sum.o
-	$(CC) $(CFLAGS) -o $@ $^ -lcmockery
-
-test_dollar.o: test_dollar.c money.h bank.h
-	$(CC) $(CFLAGS) -c -o $@ $<
+test_currency: $(OBJS_TEST_CURRENCY)
+	$(CC) $(CFLAGS) -o $@ $(OBJS_TEST_CURRENCY) $(LDFLAGS)
 
 
-test_currency: test_currency.o money.o sum.o
-	$(CC) $(CFLAGS) -o $@ $^ -lcmockery
+.c.o:
+	$(CC) $(CFLAGS) -c $<
 
-test_currency.o: test_currency.c
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-
-money.o: money.c money.h money_protected.h sum.h
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-bank.o: bank.c bank.h
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-sum.o: sum.c sum.h
-	$(CC) $(CFLAGS) -c -o $@ $<
+depend:
+	$(CC) -MM -MG $(SRCS) > $(DEPENDS)
 
 clean:
-	-rm *.o *~
-	-rm test_currency
-	-rm test_dollar
-	-rm test_bank
+	@rm -f $(OBJS) $(TARGETS) *~
+
+-include $(DEPENDS)
+
