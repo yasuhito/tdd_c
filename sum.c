@@ -3,26 +3,25 @@
 #include "money.h"
 #include "money_protected.h"
 
+
 static Money *
 reduce_sum( const struct Expression *exp, Currency to ){
   Sum *sum = exp->value;
-  int amount1, amount2, add_amount;
-  amount1 = ( ( MoneyProtected * ) ( sum->augend ) )->amount;
-  amount2 = ( ( MoneyProtected * ) ( sum->addend ) )->amount;
-  add_amount = amount1 + amount2;
-  return create_money( add_amount, to );
+  unsigned int augend = ( ( MoneyProtected * ) sum->augend )->amount;
+  unsigned int addend = ( ( MoneyProtected * ) sum->addend )->amount;
+  return create_money( augend + addend, to );
 }
 
+
 Expression *
-create_sum( const Money *augend, const Money *addend) {
-  Expression *result = ( Expression * ) malloc( sizeof ( Expression ) );
-  Sum *sum = ( Sum * ) malloc ( sizeof ( Sum ) ) ;
+create_sum( const Money *augend, const Money *addend ) {
+  Sum *sum = malloc( sizeof( Sum ) );
   sum->augend = augend;
   sum->addend = addend;
 
+  Expression *result = malloc( sizeof( Expression ) );
   result->value = sum;
   result->reduce = reduce_sum;
 
   return result;
 }
-
