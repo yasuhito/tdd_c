@@ -1,9 +1,10 @@
-#include <stdlib.h>
-#include <stddef.h>
 #include <assert.h>
+#include <stddef.h>
+#include <stdlib.h>
 #include "money.h"
 #include "money_protected.h"
 #include "sum.h"
+
 
 Money *
 franc( unsigned int amount ) {
@@ -26,32 +27,16 @@ create_money( unsigned int amount, Currency currency ) {
 }
 
 
-static Money *
-reduce_money( struct Expression *exp, Currency to ) {
-  MoneyProtected *money = exp->exp;
-  int rate = money->currency == CHF && to == USD ? 2 : 1;
-  return create_money( money->amount / rate, to );
-}
-
-
 Expression *
-expression_from( const Money *money ) {
-  Expression *result = ( Expression * ) malloc( sizeof( Expression ) );
-  result->exp = ( void * ) money;
-  result->reduce = reduce_money;
-  return result;
+plus( const Money *money, const Money *addend ) {
+  return create_sum( money, addend );
 }
 
-
-Expression *
-plus( const Money *money, const Money *addend_money ) {
-  Expression *sum = create_sum( money, addend_money );
-  return sum;
-}
 
 Money *
-multiply( Money * money, int multiplier ) {
-  return create_money( ( ( MoneyProtected * ) money )->amount * multiplier, ( ( MoneyProtected * ) money )->currency );
+multiply( const Money *money, unsigned int multiplier ) {
+  MoneyProtected *moneyp = ( MoneyProtected * ) money;
+  return create_money( moneyp->amount * multiplier, moneyp->currency );
 }
 
 
@@ -63,17 +48,33 @@ currency_of( const Money *money ) {
 
 bool
 equal( const void *money, const void *other ) {
-  return ( ( ( MoneyProtected * ) money )->amount == ( ( MoneyProtected * ) other )->amount ) 
-    && ( ( ( MoneyProtected * ) money )->currency == ( ( MoneyProtected * ) other )->currency );
+  MoneyProtected *moneyp = ( MoneyProtected * ) money;
+  MoneyProtected *otherp = ( MoneyProtected * ) other;
+  return ( moneyp->amount == otherp->amount ) && ( moneyp->currency == otherp->currency );
+}
+
+
+static Money *
+reduce_money( const struct Expression *exp, Currency to ) {
+  MoneyProtected *money = exp->value;
+  int rate = money->currency == CHF && to == USD ? 2 : 1;
+  return create_money( money->amount / rate, to );
 }
 
 
 Expression *
 create_money_expression( Money *money ){
-  Expression *result;
-  result = ( Expression * ) malloc( sizeof( Expression ) );
-  result->exp = money;
+  Expression *result = malloc( sizeof( Expression ) );
+  result->value = money;
   result->reduce = reduce_money;
+  return result;
+}
 
+
+Expression *
+expression_from( const Money *money ) {
+  Expression *result = ( Expression * ) malloc( sizeof( Expression ) );
+  result->value = ( void * ) money;
+  result->reduce = reduce_money;
   return result;
 }

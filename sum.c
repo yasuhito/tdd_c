@@ -4,8 +4,8 @@
 #include "money_protected.h"
 
 static Money *
-reduce_sum( struct Expression *exp, Currency to ){
-  Sum *sum = exp->exp;
+reduce_sum( const struct Expression *exp, Currency to ){
+  Sum *sum = exp->value;
   int amount1, amount2, add_amount;
   amount1 = ( ( MoneyProtected * ) ( sum->augend ) )->amount;
   amount2 = ( ( MoneyProtected * ) ( sum->addend ) )->amount;
@@ -20,7 +20,7 @@ create_sum( const Money *augend, const Money *addend) {
   sum->augend = augend;
   sum->addend = addend;
 
-  result->exp = sum;
+  result->value = sum;
   result->reduce = reduce_sum;
 
   return result;

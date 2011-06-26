@@ -14,7 +14,7 @@ test_plus_returns_sum() {
   Money *addend_five = dollar( 5 );
 
   Expression *result = plus( five, addend_five );
-  Sum *sum = ( Sum * ) result->exp;
+  Sum *sum = ( Sum * ) result->value;
   assert_true( equal( five, sum->augend ) );
   assert_true( equal( addend_five, sum->addend ) );
 

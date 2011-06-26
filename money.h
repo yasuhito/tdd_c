@@ -1,9 +1,12 @@
 #ifndef MONEY_H
 #define MONEY_H
 
+
 #include <stdbool.h>
 
+
 typedef struct {
+  // NOTE: Protected members are defined in money_protected.h
 } Money;
 
 typedef enum {
@@ -12,18 +15,24 @@ typedef enum {
 } Currency;
 
 typedef struct Expression {
-  void *exp;
-  Money* ( *reduce )( struct Expression *exp, Currency to );
+  void *value;
+  Money * ( *reduce )( const struct Expression *exp, Currency to );
 } Expression;
 
+
+// Constructors
 Money *franc( unsigned int amount );
 Money *dollar( unsigned int amount );
 Money *create_money( unsigned int amount, Currency currency );
-Expression *expression_from( const Money *money );
-Expression *plus( const Money *money, const Money *addend_money );
-Money *multiply( Money *money, int multiplier );
+
+// Arithmetics
+Expression *plus( const Money *money, const Money *addend );
+Money *multiply( const Money *money, unsigned int multiplier );
+
+// Misc.
 Currency currency_of( const Money *money );
 bool equal( const void *money, const void *other );
+Expression *expression_from( const Money *money );
 
 
 #endif // MONEY_H
