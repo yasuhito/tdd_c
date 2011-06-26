@@ -3,9 +3,9 @@ CFLAGS = -Wall -Werror
 LDFLAGS = -lcmockery
 TARGETS = test_bank test_dollar test_currency 
 
-SRCS_TEST_BANK = test_bank.c money.c bank.c sum.c
+SRCS_TEST_BANK = test_bank.c bank.c money.c sum.c
 SRCS_TEST_DOLLAR = test_dollar.c money.c bank.c sum.c
-SRCS_TEST_CURRENCY = test_currency.c money.c sum.c
+SRCS_TEST_CURRENCY = test_currency.c bank.c money.c sum.c
 SRCS = $(SRCS_TEST_BANK) $(SRCS_TEST_DOLLAR) $(SRCS_TEST_CURRENCY)
 
 OBJS_TEST_BANK = $(SRCS_TEST_BANK:.c=.o)

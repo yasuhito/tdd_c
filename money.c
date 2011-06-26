@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include "bank.h"
 #include "money.h"
 #include "money_protected.h"
 #include "sum.h"
@@ -57,8 +58,7 @@ equal( const void *money, const void *other ) {
 static Money *
 reduce_money( const struct Expression *exp, Currency to ) {
   MoneyProtected *money = exp->value;
-  int rate = money->currency == CHF && to == USD ? 2 : 1;
-  return create_money( money->amount / rate, to );
+  return create_money( money->amount / rate( money->currency, to ), to );
 }
 
 
