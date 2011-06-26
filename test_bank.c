@@ -31,7 +31,7 @@ test_reduce_sum() {
   Money *seven_usd = dollar( 7 );
 
   Expression *exp = plus( three_usd, four_usd );
-  Money *result = bank_reduce( exp , USD );
+  Money *result = reduce( exp , USD );
   assert_true( equal( result, seven_usd ) );
 
   free( three_usd );
@@ -49,7 +49,7 @@ test_reduce_different_currency() {
 
   add_rate( CHF, USD, 2 );
   Expression *exp_two_franc = expression_from( two_franc );
-  Money *result = bank_reduce( exp_two_franc, USD );
+  Money *result = reduce( exp_two_franc, USD );
   assert_true( equal( result, one_dollar ) );
 
   free( two_franc );
