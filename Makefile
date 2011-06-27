@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -g -Wall -Werror -std=gnu99
-LDFLAGS = -lcmockery -lpthread
+LDFLAGS = -lcmockery
 TARGETS = test_bank test_dollar test_currency test_pair
 
 SRCS_TEST_BANK = test_bank.c bank.c hash_table.c linked_list.c money.c pair.c sum.c

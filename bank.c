@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include "bank.h"
 #include "hash_table.h"
@@ -33,12 +34,12 @@ rate( Currency from, Currency to ) {
   void *rate = lookup_hash_entry( rates, pair );
   assert( rate != NULL );
   free( pair );
-  return ( unsigned int ) rate;
+  return ( unsigned int ) ( uintptr_t ) rate;
 }
 
 
 void
 add_rate( Currency from, Currency to, unsigned int rate ) {
   maybe_init_rates();
-  insert_hash_entry( rates, create_pair( from, to ), ( void * ) rate );
+  insert_hash_entry( rates, create_pair( from, to ), ( void * ) ( uintptr_t ) rate );
 }

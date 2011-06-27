@@ -28,12 +28,6 @@
 static const unsigned int default_hash_size = 65521;
 
 
-typedef struct {
-  hash_table public;
-  pthread_mutex_t *mutex;
-} private_hash_table;
-
-
 /**
  * Default compare function.
  */
@@ -54,27 +48,21 @@ hash_atom( const void *key ) {
 
 hash_table *
 create_hash( const compare_function compare, const hash_function hash ) {
-  private_hash_table *table = malloc( sizeof( private_hash_table ) );
+  hash_table *table = malloc( sizeof( hash_table ) );
 
-  table->public.number_of_buckets = default_hash_size;
-  table->public.compare = compare ? compare : compare_atom;
-  table->public.hash = hash ? hash : hash_atom;
-  table->public.length = 0;
-  table->public.buckets = malloc( sizeof( list_element * ) * default_hash_size );
+  table->number_of_buckets = default_hash_size;
+  table->compare = compare ? compare : compare_atom;
+  table->hash = hash ? hash : hash_atom;
+  table->length = 0;
+  table->buckets = malloc( sizeof( list_element * ) * default_hash_size );
   unsigned int i;
   bool list_created = false;
-  for ( i = 0; i < table->public.number_of_buckets; i++ ) {
-    list_created = create_list( &table->public.buckets[ i ] );
+  for ( i = 0; i < table->number_of_buckets; i++ ) {
+    list_created = create_list( &table->buckets[ i ] );
     assert( list_created == true );
   }
-  list_created = create_list( &table->public.nonempty_bucket_index );
+  list_created = create_list( &table->nonempty_bucket_index );
   assert( list_created == true );
-
-  pthread_mutexattr_t attr;
-  pthread_mutexattr_init( &attr );
-  pthread_mutexattr_settype( &attr, PTHREAD_MUTEX_RECURSIVE_NP );
-  table->mutex = malloc( sizeof( pthread_mutex_t ) );
-  pthread_mutex_init( table->mutex, &attr );
 
   return ( hash_table * ) table;
 }
@@ -110,8 +98,6 @@ insert_hash_entry( hash_table *table, void *key, void *value ) {
   assert( table != NULL );
   assert( key != NULL );
 
-  pthread_mutex_lock( ( ( private_hash_table * ) table )->mutex );
-
   unsigned int i = get_bucket_index( table, key );
   if ( table->buckets[ i ] == NULL ) {
     insert_in_front( &table->nonempty_bucket_index, ( void * ) ( unsigned long ) i );
@@ -124,8 +110,6 @@ insert_hash_entry( hash_table *table, void *key, void *value ) {
   new_entry->value = value;
   insert_in_front( &table->buckets[ i ], new_entry );
   table->length++;
-
-  pthread_mutex_unlock( ( ( private_hash_table * ) table )->mutex );
 
   if ( old_elem == NULL ) {
     return NULL;
@@ -141,15 +125,11 @@ lookup_hash_entry( hash_table *table, const void *key ) {
   assert( table != NULL );
   assert( key != NULL );
 
-  pthread_mutex_lock( ( ( private_hash_table * ) table )->mutex );
-
   list_element *e = find_list_element_from_buckets( table, key );
   if ( e != NULL ) {
-    pthread_mutex_unlock( ( ( private_hash_table * ) table )->mutex );
     return ( ( hash_entry * ) e->data )->value;
   }
 
-  pthread_mutex_unlock( ( ( private_hash_table * ) table )->mutex );
   return NULL;
 }
 
@@ -158,8 +138,6 @@ void *
 delete_hash_entry( hash_table *table, const void *key ) {
   assert( table != NULL );
   assert( key != NULL );
-
-  pthread_mutex_lock( ( ( private_hash_table * ) table )->mutex );
 
   unsigned int i = get_bucket_index( table, key );
   list_element *e = find_list_element_from_buckets( table, key );
@@ -172,11 +150,9 @@ delete_hash_entry( hash_table *table, const void *key ) {
       delete_element( &table->nonempty_bucket_index, ( void * ) ( unsigned long ) i );
     }
     table->length--;
-    pthread_mutex_unlock( ( ( private_hash_table * ) table )->mutex );
     return deleted;
   }
 
-  pthread_mutex_unlock( ( ( private_hash_table * ) table )->mutex );
   return NULL;
 }
 
@@ -185,8 +161,6 @@ void
 map_hash( hash_table *table, const void *key, void function( void *value, void *user_data ), void *user_data ) {
   assert( table != NULL );
 
-  pthread_mutex_lock( ( ( private_hash_table * ) table )->mutex );
-
   unsigned int i = get_bucket_index( table, key );
   list_element *e = NULL;
   for ( e = table->buckets[ i ]; e; e = e->next ) {
@@ -194,16 +168,12 @@ map_hash( hash_table *table, const void *key, void function( void *value, void *
       function( ( ( hash_entry * ) e->data )->value, user_data );
     }
   }
-
-  pthread_mutex_unlock( ( ( private_hash_table * ) table )->mutex );
 }
 
 
 void
 foreach_hash( hash_table *table, void function( void *key, void *value, void *user_data ), void *user_data ) {
   assert( table != NULL );
-
-  pthread_mutex_lock( ( ( private_hash_table * ) table )->mutex );
 
   unsigned int i;
   for ( i = 0; i < table->number_of_buckets; i++ ) {
@@ -214,8 +184,6 @@ foreach_hash( hash_table *table, void function( void *key, void *value, void *us
       function( he->key, he->value, user_data );
     }
   }
-
-  pthread_mutex_unlock( ( ( private_hash_table * ) table )->mutex );
 }
 
 
@@ -269,9 +237,6 @@ void
 delete_hash( hash_table *table ) {
   assert( table != NULL );
 
-  pthread_mutex_lock( ( ( private_hash_table * ) table )->mutex );
-  pthread_mutex_t *mutex = ( ( private_hash_table * ) table )->mutex;
-
   bool list_deleted = false;
 
   if ( table->length > 0 ) {
@@ -293,9 +258,6 @@ delete_hash( hash_table *table ) {
   assert( list_deleted == true );
 
   free( table );
-
-  pthread_mutex_unlock( mutex );
-  free( mutex );
 }
 
 
