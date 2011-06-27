@@ -17,6 +17,9 @@ reduce( Expression *source, Currency to ) {
 
 unsigned int
 rate( Currency from, Currency to ) {
+  if ( from == to ) {
+    return 1;
+  }
   Pair *pair = create_pair( from, to );
   void *rate = lookup_hash_entry( rates, pair );
   assert( rate != NULL );
