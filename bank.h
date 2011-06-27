@@ -6,8 +6,8 @@
 
 
 Money *reduce( Expression *source, Currency to );
-int rate( Currency from, Currency to );
-void add_rate( Currency x, Currency y, double rate );
+unsigned int rate( Currency from, Currency to );
+void add_rate( Currency x, Currency y, unsigned int rate );
 
 
 #endif // BANK_H
