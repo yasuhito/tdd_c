@@ -54,6 +54,8 @@ test_reduce_different_currency() {
 
   free( two_franc );
   free( one_dollar );
+  free( exp_two_franc );
+  free( result );
 }
 
 
