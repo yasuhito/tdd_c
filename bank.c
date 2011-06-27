@@ -15,8 +15,17 @@ reduce( Expression *source, Currency to ) {
 }
 
 
+static void
+maybe_init_rates() {
+  if ( rates == NULL ) {
+    rates = create_hash( compare_pair, hash_pair );
+  }
+}
+
+
 unsigned int
 rate( Currency from, Currency to ) {
+  maybe_init_rates();
   if ( from == to ) {
     return 1;
   }
@@ -30,8 +39,6 @@ rate( Currency from, Currency to ) {
 
 void
 add_rate( Currency from, Currency to, unsigned int rate ) {
-  if ( rates == NULL ) {
-    rates = create_hash( compare_pair, hash_pair );
-  }
+  maybe_init_rates();
   insert_hash_entry( rates, create_pair( from, to ), ( void * ) rate );
 }

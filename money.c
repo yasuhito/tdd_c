@@ -51,7 +51,7 @@ bool
 equal( const void *money, const void *other ) {
   MoneyProtected *moneyp = ( MoneyProtected * ) money;
   MoneyProtected *otherp = ( MoneyProtected * ) other;
-  return ( moneyp->amount == otherp->amount ) && ( moneyp->currency == otherp->currency );
+  return moneyp->amount == otherp->amount && moneyp->currency == otherp->currency;
 }
 
 
@@ -73,7 +73,7 @@ create_money_expression( Money *money ){
 
 Expression *
 expression_from( const Money *money ) {
-  Expression *result = ( Expression * ) malloc( sizeof( Expression ) );
+  Expression *result = malloc( sizeof( Expression ) );
   result->value = ( void * ) money;
   result->reduce = reduce_money;
   return result;

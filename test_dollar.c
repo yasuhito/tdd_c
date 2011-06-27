@@ -3,8 +3,8 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <google/cmockery.h>
-#include "money.h"
 #include "bank.h"
+#include "money.h"
 
 
 static void
