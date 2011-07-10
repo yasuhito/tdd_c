@@ -58,6 +58,24 @@ test_reduce_different_currency() {
   free( result );
 }
 
+static void
+test_mixed_addition(){
+  //  Expression *five_bucks = dollar( 5 );
+  Money *five_bucks = dollar( 5 );
+  //  Expression *ten_francs = franc( 10 );
+  Money *ten_francs = franc( 10 );
+  Money *ten_usd = dollar( 10 );
+
+  add_rate( CHF, USD, 2 );
+  Money *result = reduce( plus( five_bucks, ten_francs ), USD );
+  assert_true( equal( ten_usd, result ) );
+
+  free( five_bucks );
+  free( ten_francs );
+  free( ten_usd );
+  free( result );
+
+}
 
 int
 main() {
@@ -65,6 +83,7 @@ main() {
     unit_test( test_plus_returns_sum ),
     unit_test( test_reduce_sum ),
     unit_test( test_reduce_different_currency ),
+    unit_test( test_mixed_addition ),
   };
   return run_tests( tests );
 }
