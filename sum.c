@@ -18,7 +18,7 @@ reduce_sum( const struct Expression *exp, Currency to ){
 
 
 Expression *
-create_sum( const Money *augend, const Money *addend ) {
+create_sum( const Expression *augend, const Expression *addend ) {
   Sum *sum = malloc( sizeof( Sum ) );
   sum->augend = augend;
   sum->addend = addend;
