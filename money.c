@@ -7,15 +7,15 @@
 #include "sum.h"
 
 
-Money *
+Expression *
 franc( unsigned int amount ) {
-  return ( Money * ) create_money( amount, CHF );
+  return expression_from ( create_money( amount, CHF ) );
 }
 
 
-Money *
+Expression *
 dollar( unsigned int amount ) {
-  return ( Money * ) create_money( amount, USD );
+  return expression_from ( create_money( amount, USD ) );
 }
 
 
@@ -42,7 +42,7 @@ multiply( const Expression *money, unsigned int multiplier ) {
 
 
 Currency
-currency_of( const Money *money ) {
+currency_of( const Expression *money ) {
   return ( ( MoneyProtected * ) money )->currency;
 }
 

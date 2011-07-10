@@ -21,8 +21,8 @@ typedef struct Expression {
 
 
 // Constructors
-Money *franc( unsigned int amount );
-Money *dollar( unsigned int amount );
+Expression *franc( unsigned int amount );
+Expression *dollar( unsigned int amount );
 Money *create_money( unsigned int amount, Currency currency );
 
 // Arithmetics
@@ -30,7 +30,7 @@ Expression *plus( const Expression *money, const Expression *addend );
 Expression *multiply( const Expression *money, unsigned int multiplier );
 
 // Misc.
-Currency currency_of( const Money *money );
+Currency currency_of( const Expression *money );
 bool equal( const void *money, const void *other );
 Expression *expression_from( const Money *money );
 
