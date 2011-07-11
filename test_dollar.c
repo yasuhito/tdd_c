@@ -9,9 +9,9 @@
 
 static void
 test_multiply_dollar_5x2() {
-  Expression *five = dollar( 5 );
-  Expression *product = multiply( five, 2 );
-  Expression *ten = dollar( 10 );
+  Money *five = dollar( 5 );
+  Money *product = multiply( five, 2 );
+  Money *ten = dollar( 10 );
 
   assert_true( equal( product, ten ) );
 
@@ -23,9 +23,9 @@ test_multiply_dollar_5x2() {
 
 static void
 test_multiply_dollar_5x3() {
-  Expression *five = dollar( 5 );
-  Expression *product = multiply( five, 3 );
-  Expression *fifteen = dollar( 15 );
+  Money *five = dollar( 5 );
+  Money *product = multiply( five, 3 );
+  Money *fifteen = dollar( 15 );
 
   assert_true( equal( product, fifteen ) );
 
@@ -37,10 +37,10 @@ test_multiply_dollar_5x3() {
 
 static void
 test_equal() {
-  Expression *five_dollar1 = dollar( 5 );
-  Expression *five_dollar2 = dollar( 5 );
-  Expression *six_dollar = dollar( 6 );
-  Expression *five_franc = franc( 5 );
+  Money *five_dollar1 = dollar( 5 );
+  Money *five_dollar2 = dollar( 5 );
+  Money *six_dollar = dollar( 6 );
+  Money *five_franc = franc( 5 );
 
   assert_true( equal( five_dollar1, five_dollar2 ) );
   assert_false( equal( five_dollar1, six_dollar ) );
@@ -55,12 +55,12 @@ test_equal() {
 
 static void
 test_simple_addition() {
-  Expression *five = dollar( 5 );
-  Expression *addend_five = dollar( 5 );
-  Expression *ten = dollar( 10 );
+  Money *five = dollar( 5 );
+  Money *addend_five = dollar( 5 );
+  Money *ten = dollar( 10 );
 
   Expression *sum = plus( five, addend_five );
-  Expression *reduced = reduce( sum, USD );
+  Money *reduced = reduce( sum, USD );
   assert_true( equal( ten, reduced ) );
 
   free( five );

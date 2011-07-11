@@ -10,9 +10,9 @@
 static hash_table *rates = NULL;
 
 
-Expression *
+Money *
 reduce( Expression *source, Currency to ) {
-  return (Expression * ) source->reduce( source, to );
+  return source->reduce( source, to );
 }
 
 

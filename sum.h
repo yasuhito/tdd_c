@@ -6,12 +6,12 @@
 
 
 typedef struct {
-  const Expression *augend;
-  const Expression *addend;
+  const Money *augend;
+  const Money *addend;
 } Sum;
 
 
-Expression *create_sum( const Expression *augend, const Expression *addend );
+Expression *create_sum( const Money *augend, const Money *addend );
 
 
 #endif // SUM_H
