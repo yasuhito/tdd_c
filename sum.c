@@ -2,13 +2,20 @@
 #include "sum.h"
 #include "money.h"
 #include "money_protected.h"
-
+#include "bank.h"
 
 static Money *
 reduce_sum( const struct Expression *exp, Currency to ){
   Sum *sum = exp->value;
-  unsigned int augend = ( ( MoneyProtected * ) sum->augend )->amount;
-  unsigned int addend = ( ( MoneyProtected * ) sum->addend )->amount;
+
+  Expression *augend_exp = expression_from ( (Money * ) sum->augend );
+  unsigned int augend = ( ( MoneyProtected * ) reduce ( augend_exp, to ) )->amount;
+  Expression *addend_exp = expression_from ( (Money * ) sum->addend );
+  unsigned int addend = ( ( MoneyProtected * ) reduce ( addend_exp, to )  )->amount;
+
+  free( augend_exp );
+  free( addend_exp );
+
   return create_money( augend + addend, to );
 }
 
