@@ -11,7 +11,7 @@ reduce_sum( const struct Expression *exp, Currency to ){
   Expression *augend_exp = expression_from ( (Money * ) sum->augend );
   unsigned int augend = ( ( MoneyProtected * ) reduce ( augend_exp, to ) )->amount;
   Expression *addend_exp = expression_from ( (Money * ) sum->addend );
-  unsigned int addend = ( ( MoneyProtected * ) reduce ( addend_exp, to )  )->amount;
+  unsigned int addend = ( ( MoneyProtected * ) reduce ( addend_exp, to ) )->amount;
 
   free( augend_exp );
   free( addend_exp );
@@ -21,7 +21,7 @@ reduce_sum( const struct Expression *exp, Currency to ){
 
 
 Expression *
-create_sum( const Money *augend, const Money *addend ) {
+create_sum( const Expression *augend, const Expression *addend ) {
   Sum *sum = malloc( sizeof( Sum ) );
   sum->augend = augend;
   sum->addend = addend;

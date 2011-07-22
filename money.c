@@ -29,15 +29,15 @@ create_money( unsigned int amount, Currency currency ) {
 
 
 Expression *
-plus( const Money *money, const Money *addend ) {
+plus( const Expression *money, const Expression *addend ) {
   return create_sum( money, addend );
 }
 
 
-Money *
-multiply( const Money *money, unsigned int multiplier ) {
+Expression *
+multiply( const Expression *money, unsigned int multiplier ) {
   MoneyProtected *moneyp = ( MoneyProtected * ) money;
-  return create_money( moneyp->amount * multiplier, moneyp->currency );
+  return ( Expression * ) create_money( moneyp->amount * multiplier, moneyp->currency );
 }
 
 
