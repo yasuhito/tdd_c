@@ -5,17 +5,18 @@
 #include "money.h"
 #include "money_protected.h"
 #include "sum.h"
+#include "mul.h"
 
 
-Money *
+Expression *
 franc( unsigned int amount ) {
-  return ( Money * ) create_money( amount, CHF );
+  return expression_from( create_money( amount, CHF ) );
 }
 
 
-Money *
+Expression *
 dollar( unsigned int amount ) {
-  return ( Money * ) create_money( amount, USD );
+  return expression_from( create_money( amount, USD ) );
 }
 
 
@@ -29,15 +30,14 @@ create_money( unsigned int amount, Currency currency ) {
 
 
 Expression *
-plus( const Expression *money, const Expression *addend ) {
-  return create_sum( money, addend );
+plus( const Expression *augend, const Expression *addend ) {
+  return create_sum( augend, addend );
 }
 
 
 Expression *
-multiply( const Expression *money, unsigned int multiplier ) {
-  MoneyProtected *moneyp = ( MoneyProtected * ) money;
-  return ( Expression * ) create_money( moneyp->amount * multiplier, moneyp->currency );
+multiply( const Expression *exp, unsigned int multiplier ) {
+  return create_mul( exp, multiplier );
 }
 
 
@@ -63,18 +63,15 @@ reduce_money( const struct Expression *exp, Currency to ) {
 
 
 Expression *
-create_money_expression( Money *money ){
-  Expression *result = malloc( sizeof( Expression ) );
-  result->value = money;
-  result->reduce = reduce_money;
-  return result;
-}
-
-
-Expression *
 expression_from( const Money *money ) {
   Expression *result = malloc( sizeof( Expression ) );
   result->value = ( void * ) money;
   result->reduce = reduce_money;
   return result;
+}
+
+
+Money *
+money_from( const Expression *exp ) {
+  return ( Money * ) exp->value;
 }
