@@ -30,7 +30,7 @@ Expression *plus( const Expression *augend, const Expression *addend );
 Expression *multiply( const Expression *multiplicand, unsigned int multiplier );
 
 // Misc.
-Currency currency_of( const Money *money );
+Currency currency_of( const Expression *money );
 bool equal( const void *money, const void *other );
 Expression *expression_from( const Money *money );
 Money *money_from( const Expression *exp );
