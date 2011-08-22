@@ -18,3 +18,11 @@ bool compare_pair( const void *x, const void *y );
 
 
 #endif // PAIR_H
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */

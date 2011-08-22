@@ -20,3 +20,11 @@ main() {
   };
   return run_tests( tests );
 }
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */

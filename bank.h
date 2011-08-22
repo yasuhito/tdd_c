@@ -5,9 +5,17 @@
 #include "money.h"
 
 
-Expression * reduce( Expression *source, Currency to );
+Money * reduce( Expression *source, Currency to );
 unsigned int rate( Currency from, Currency to );
 void add_rate( Currency from, Currency to, unsigned int rate );
 
 
 #endif // BANK_H
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */

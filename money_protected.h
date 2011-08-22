@@ -8,3 +8,11 @@ typedef struct {
   unsigned int amount;
   Currency currency;
 } MoneyProtected;
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */

@@ -15,3 +15,11 @@ Expression *create_sum( const Expression *augend, const Expression *addend );
 
 
 #endif // SUM_H
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */

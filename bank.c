@@ -10,9 +10,9 @@
 static hash_table *rates = NULL;
 
 
-Expression *
+Money *
 reduce( Expression *source, Currency to ) {
-  return (Expression * ) source->reduce( source, to );
+  return source->reduce( source, to );
 }
 
 
@@ -43,3 +43,11 @@ add_rate( Currency from, Currency to, unsigned int rate ) {
   maybe_init_rates();
   insert_hash_entry( rates, create_pair( from, to ), ( void * ) ( uintptr_t ) rate );
 }
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */
