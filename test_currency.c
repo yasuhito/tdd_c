@@ -8,8 +8,8 @@
 
 static void
 test_currency() {
-  assert_int_equal( USD, currency_of( dollar( 1 ) ) );
-  assert_int_equal( CHF, currency_of( franc( 1 ) ) );
+  assert_int_equal( USD, currency_of( money_from( dollar( 1 ) ) ) );
+  assert_int_equal( CHF, currency_of( money_from( franc( 1 ) ) ) );
 }
 
 
@@ -20,3 +20,11 @@ main() {
   };
   return run_tests( tests );
 }
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */

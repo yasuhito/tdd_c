@@ -1,11 +1,12 @@
 CC = gcc
 CFLAGS = -g -Wall -Werror -std=gnu99
+# CFLAGS += -DUNIT_TESTING
 LDFLAGS = -lcmockery
 TARGETS = test_bank test_dollar test_currency test_pair
 
-SRCS_TEST_BANK = test_bank.c bank.c hash_table.c linked_list.c money.c pair.c sum.c
-SRCS_TEST_DOLLAR = test_dollar.c hash_table.c linked_list.c money.c bank.c pair.c sum.c
-SRCS_TEST_CURRENCY = test_currency.c hash_table.c linked_list.c bank.c money.c pair.c sum.c
+SRCS_TEST_BANK = test_bank.c bank.c hash_table.c linked_list.c money.c pair.c sum.c mul.c
+SRCS_TEST_DOLLAR = test_dollar.c hash_table.c linked_list.c money.c bank.c pair.c sum.c mul.c
+SRCS_TEST_CURRENCY = test_currency.c hash_table.c linked_list.c bank.c money.c pair.c sum.c mul.c
 SRCS_TEST_PAIR = test_pair.c bank.c pair.c hash_table.c linked_list.c
 SRCS = $(SRCS_TEST_BANK) $(SRCS_TEST_DOLLAR) $(SRCS_TEST_CURRENCY) $(SRCS_TEST_PAIR)
 
