@@ -1,5 +1,6 @@
 CC = gcc
 CFLAGS = -g -Wall -Werror -std=gnu99
+# CFLAGS += -DUNIT_TESTING
 LDFLAGS = -lcmockery
 TARGETS = test_bank test_dollar test_currency test_pair
 

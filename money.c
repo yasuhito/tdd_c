@@ -36,8 +36,8 @@ plus( const Expression *augend, const Expression *addend ) {
 
 
 Expression *
-multiply( const Expression *exp, unsigned int multiplier ) {
-  return create_mul( exp, multiplier );
+multiply( const Expression *multiplicand, unsigned int multiplier ) {
+  return create_mul( multiplicand, multiplier );
 }
 
 
@@ -75,3 +75,11 @@ Money *
 money_from( const Expression *exp ) {
   return ( Money * ) exp->value;
 }
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */

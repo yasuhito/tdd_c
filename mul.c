@@ -9,8 +9,8 @@ static Money *
 reduce_mul( const Expression *exp, Currency to ){
   Mul *mul = exp->value;
   Expression *multiplicand_exp = ( Expression * ) mul->multiplicand ;
-  unsigned int multiplicand = ( ( MoneyProtected * ) reduce ( multiplicand_exp, to ) )->amount;
-  unsigned int multiplier  = mul->multiplier;
+  unsigned int multiplicand = ( ( MoneyProtected * ) reduce( multiplicand_exp, to ) )->amount;
+  unsigned int multiplier = mul->multiplier;
 
   return create_money( multiplicand * multiplier, to );
 }
@@ -28,3 +28,11 @@ create_mul( const Expression *multiplicand, unsigned int multiplier ) {
 
   return result;
 }
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */

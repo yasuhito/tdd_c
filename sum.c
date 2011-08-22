@@ -8,10 +8,10 @@
 static Money *
 reduce_sum( const Expression *exp, Currency to ){
   Sum *sum = exp->value;
-  Expression *augend_exp = ( Expression * ) sum->augend ;
+  Expression *augend_exp = ( Expression * ) sum->augend;
   Expression *addend_exp = ( Expression * ) sum->addend;
-  unsigned int augend = ( ( MoneyProtected * ) reduce ( augend_exp, to ) )->amount;
-  unsigned int addend = ( ( MoneyProtected * ) reduce ( addend_exp, to ) )->amount;
+  unsigned int augend = ( ( MoneyProtected * ) reduce( augend_exp, to ) )->amount;
+  unsigned int addend = ( ( MoneyProtected * ) reduce( addend_exp, to ) )->amount;
 
   return create_money( augend + addend, to );
 }
@@ -29,3 +29,11 @@ create_sum( const Expression *augend, const Expression *addend ) {
 
   return result;
 }
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */

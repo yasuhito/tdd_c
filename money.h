@@ -27,7 +27,7 @@ Money *create_money( unsigned int amount, Currency currency );
 
 // Arithmetics
 Expression *plus( const Expression *augend, const Expression *addend );
-Expression *multiply( const Expression *exp, unsigned int multiplier );
+Expression *multiply( const Expression *multiplicand, unsigned int multiplier );
 
 // Misc.
 Currency currency_of( const Money *money );
@@ -35,4 +35,13 @@ bool equal( const void *money, const void *other );
 Expression *expression_from( const Money *money );
 Money *money_from( const Expression *exp );
 
+
 #endif // MONEY_H
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */

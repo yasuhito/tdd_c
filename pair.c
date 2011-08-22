@@ -23,3 +23,11 @@ compare_pair( const void *x, const void *y ) {
   const Pair *py = y;
   return px->from == py->from && px->to == py->to;
 }
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */

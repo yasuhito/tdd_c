@@ -14,3 +14,11 @@ typedef struct {
 Expression *create_mul( const Expression *multiplicand, unsigned int multiplier );
 
 #endif // MUL_H
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */

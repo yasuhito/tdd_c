@@ -36,7 +36,7 @@ test_multiply_dollar_5x3() {
 
 
 static void
-test_multiple_multiply_dollar_5x3x3() {
+test_multiply_dollar_5x3x3() {
   Expression *five = dollar( 5 );
   Expression *product = multiply( multiply( five, 3 ), 3 );
   Expression *fortyfive = dollar( 45 );
@@ -90,9 +90,17 @@ main() {
   const UnitTest tests[] = {
     unit_test( test_multiply_dollar_5x2 ),
     unit_test( test_multiply_dollar_5x3 ),
-    unit_test( test_multiple_multiply_dollar_5x3x3 ),
+    unit_test( test_multiply_dollar_5x3x3 ),
     unit_test( test_equal ),
     unit_test( test_simple_addition ),
   };
   return run_tests( tests );
 }
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */

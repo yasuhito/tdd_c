@@ -100,8 +100,7 @@ test_addition_multiply() {
 
   add_rate( CHF, USD, 2 );
 
-  Expression *sum = multiply( plus( five_bucks, ten_francs ), 2 );
-  Money *result = reduce( sum, USD );
+  Money *result = reduce( multiply( plus( five_bucks, ten_francs ), 2 ), USD );
   assert_true( equal( money_from( twenty_bucks ), result ) );
 
   free( five_bucks );
@@ -123,3 +122,11 @@ main() {
   };
   return run_tests( tests );
 }
+
+
+/*
+ * Local variables:
+ * c-basic-offset: 2
+ * indent-tabs-mode: nil
+ * End:
+ */
