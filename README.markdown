@@ -28,5 +28,7 @@
 * <del>reduce(bank, string)をどうにかする．</del>
 * <del>Sum.plus</del>
 * <del>Expression.times</del>
-* (NEW) Expression 型の dollar, franc をユーザーが free する際に内部で作成している Money オブジェクトも free されるようにする。
+* <del> Expression 型の dollar, franc をユーザーが free する際に内部で作成している Money オブジェクトも free されるようにする。</del>
 * (NEW) money_from() を汎用化するか除去する。
+* (NEW) add_rate時に作成されるpairオブジェクトを管理し、後で削除できるようにする。
+

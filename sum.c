@@ -10,8 +10,13 @@ reduce_sum( const Expression *exp, Currency to ){
   Sum *sum = exp->value;
   Expression *augend_exp = ( Expression * ) sum->augend;
   Expression *addend_exp = ( Expression * ) sum->addend;
-  unsigned int augend = ( ( MoneyProtected * ) reduce( augend_exp, to ) )->amount;
-  unsigned int addend = ( ( MoneyProtected * ) reduce( addend_exp, to ) )->amount;
+  MoneyProtected *reduced_augend = ( MoneyProtected * ) reduce( augend_exp, to );
+  MoneyProtected *reduced_addend = ( MoneyProtected * ) reduce( addend_exp, to );
+  unsigned int augend = reduced_augend->amount;
+  unsigned int addend = reduced_addend->amount;
+
+  free_money( ( Money * ) reduced_augend );
+  free_money( ( Money * ) reduced_addend );
 
   return create_money( augend + addend, to );
 }

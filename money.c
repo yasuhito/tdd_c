@@ -77,6 +77,19 @@ money_from( const Expression *exp ) {
 }
 
 
+void
+free_expression( Expression *exp ) {
+  free( exp->value );
+  free( exp );
+}
+
+
+void
+free_money( Money *money ) {
+  free( ( MoneyProtected * ) money );
+}
+
+
 /*
  * Local variables:
  * c-basic-offset: 2

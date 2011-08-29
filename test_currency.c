@@ -8,8 +8,12 @@
 
 static void
 test_currency() {
-  assert_int_equal( USD, currency_of( money_from( dollar( 1 ) ) ) );
-  assert_int_equal( CHF, currency_of( money_from( franc( 1 ) ) ) );
+  Expression *one_usd = dollar( 1 );
+  Expression *one_franc = franc( 1 );
+  assert_int_equal( USD, currency_of( money_from( one_usd ) ) );
+  assert_int_equal( CHF, currency_of( money_from( one_franc ) ) );
+  free_expression( one_usd );
+  free_expression( one_franc );
 }
 
 
