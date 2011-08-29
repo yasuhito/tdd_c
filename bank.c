@@ -41,9 +41,18 @@ rate( Currency from, Currency to ) {
 void
 add_rate( Currency from, Currency to, unsigned int rate ) {
   maybe_init_rates();
-  insert_hash_entry( rates, create_pair( from, to ), ( void * ) ( uintptr_t ) rate );
+  Pair *pair = create_pair( from, to );
+  insert_hash_entry( rates, pair, ( void * ) ( uintptr_t ) rate );
 }
 
+
+void
+delete_all_rates() {
+  if ( rates != NULL ) {
+    delete_hash(rates);
+    rates = NULL;
+  }
+}
 
 /*
  * Local variables:

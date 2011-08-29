@@ -21,6 +21,7 @@ test_plus_returns_sum() {
   free_expression( five );
   free_expression( addend_five );
   free_expression( result );
+  delete_all_rates();
 }
 
 
@@ -39,6 +40,7 @@ test_reduce_sum() {
   free_expression( seven_usd );
   free_expression( exp );
   free_money( result );
+  delete_all_rates();
 }
 
 
@@ -54,6 +56,7 @@ test_reduce_different_currency() {
   free_expression( two_franc );
   free_expression( one_dollar );
   free_money( result );
+  delete_all_rates();
 }
 
 
@@ -73,6 +76,7 @@ test_mixed_addition() {
   free_expression( ten_usd );
   free_expression( exp );
   free_money( result );
+  delete_all_rates();
 }
 
 
@@ -94,6 +98,7 @@ test_multiple_addition() {
   free_expression( exp1 );
   free_expression( exp2 );
   free_money( result );
+  delete_all_rates();
 }
 
 
@@ -116,6 +121,7 @@ test_addition_multiply() {
   free_expression( exp1 );
   free_expression( exp2 );
   free_money( result );
+  delete_all_rates();
 }
 
 

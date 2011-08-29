@@ -20,6 +20,7 @@ test_multiply_dollar_5x2() {
   free_expression( product );
   free_expression( ten );
   free_money( reduced );
+  delete_all_rates();
 }
 
 
@@ -36,6 +37,7 @@ test_multiply_dollar_5x3() {
   free_expression( product );
   free_expression( fifteen );
   free_money( reduced );
+  delete_all_rates();
 }
 
 
@@ -54,6 +56,7 @@ test_multiply_dollar_5x3x3() {
   free_expression( product2 );
   free_expression( fortyfive );
   free_money( reduced );
+  delete_all_rates();
 }
 
 
@@ -72,6 +75,7 @@ test_equal() {
   free_expression( five_dollar2 );
   free_expression( six_dollar );
   free_expression( five_franc );
+  delete_all_rates();
 }
 
 
@@ -90,6 +94,7 @@ test_simple_addition() {
   free_expression( sum );
   free_money( reduced );
   free_expression( ten );
+  delete_all_rates();
 }
 
 
