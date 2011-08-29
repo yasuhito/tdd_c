@@ -34,6 +34,7 @@ Currency currency_of( const Money *money );
 bool equal( const void *money, const void *other );
 Expression *expression_from( const Money *money );
 Money *money_from( const Expression *exp );
+void free_expression( Expression *exp );
 
 
 #endif // MONEY_H
