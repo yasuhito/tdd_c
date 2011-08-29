@@ -10,6 +10,7 @@
 static void
 test_identity_rate() {
   assert_int_equal( 1, rate( USD, USD ) );
+  delete_all_rates();
 }
 
 

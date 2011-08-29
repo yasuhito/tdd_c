@@ -12,12 +12,15 @@ test_multiply_dollar_5x2() {
   Expression *five = dollar( 5 );
   Expression *product = multiply( five, 2 );
   Expression *ten = dollar( 10 );
+  Money *reduced =  reduce( product, USD );
 
-  assert_true( equal( reduce( product, USD ), money_from( ten ) ) );
+  assert_true( equal( reduced, money_from( ten ) ) );
 
-  free( five );
-  free( product );
-  free( ten );
+  free_expression( five );
+  free_expression( product );
+  free_expression( ten );
+  free_money( reduced );
+  delete_all_rates();
 }
 
 
@@ -26,44 +29,53 @@ test_multiply_dollar_5x3() {
   Expression *five = dollar( 5 );
   Expression *product = multiply( five, 3 );
   Expression *fifteen = dollar( 15 );
+  Money *reduced =  reduce( product, USD );
 
-  assert_true( equal( reduce( product, USD ), money_from( fifteen ) ) );
+  assert_true( equal( reduced, money_from( fifteen ) ) );
 
-  free( five );
-  free( product );
-  free( fifteen );
+  free_expression( five );
+  free_expression( product );
+  free_expression( fifteen );
+  free_money( reduced );
+  delete_all_rates();
 }
 
 
 static void
 test_multiply_dollar_5x3x3() {
   Expression *five = dollar( 5 );
-  Expression *product = multiply( multiply( five, 3 ), 3 );
+  Expression *product1 = multiply( five, 3 );
+  Expression *product2 = multiply( product1, 3 );
   Expression *fortyfive = dollar( 45 );
+  Money *reduced = reduce( product2, USD );
 
-  assert_true( equal( reduce( product, USD ), money_from( fortyfive ) ) );
+  assert_true( equal( reduced, money_from( fortyfive ) ) );
 
-  free( five );
-  free( product );
-  free( fortyfive );
+  free_expression( five );
+  free_expression( product1 );
+  free_expression( product2 );
+  free_expression( fortyfive );
+  free_money( reduced );
+  delete_all_rates();
 }
 
 
 static void
 test_equal() {
-  Money *five_dollar1 = money_from( dollar( 5 ) );
-  Money *five_dollar2 = money_from( dollar( 5 ) );
-  Money *six_dollar = money_from( dollar( 6 ) );
-  Money *five_franc = money_from( franc( 5 ) );
+  Expression *five_dollar1 = dollar( 5 );
+  Expression *five_dollar2 = dollar( 5 );
+  Expression *six_dollar = dollar( 6 );
+  Expression *five_franc = franc( 5 );
 
-  assert_true( equal( five_dollar1, five_dollar2 ) );
-  assert_false( equal( five_dollar1, six_dollar ) );
-  assert_false( equal( five_dollar1, five_franc ) );
+  assert_true( equal( money_from( five_dollar1 ), money_from( five_dollar2 ) ) );
+  assert_false( equal( money_from( five_dollar1 ), money_from( six_dollar ) ) );
+  assert_false( equal( money_from( five_dollar1 ), money_from( five_franc ) ) );
 
-  free( five_dollar1 );
-  free( five_dollar2 );
-  free( six_dollar );
-  free( five_franc );
+  free_expression( five_dollar1 );
+  free_expression( five_dollar2 );
+  free_expression( six_dollar );
+  free_expression( five_franc );
+  delete_all_rates();
 }
 
 
@@ -77,11 +89,12 @@ test_simple_addition() {
   Money *reduced = reduce( sum, USD );
   assert_true( equal( money_from( ten ), reduced ) );
 
-  free( five );
-  free( addend_five );
-  free( sum );
-  free( reduced );
-  free( ten );
+  free_expression( five );
+  free_expression( addend_five );
+  free_expression( sum );
+  free_money( reduced );
+  free_expression( ten );
+  delete_all_rates();
 }
 
 
