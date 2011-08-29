@@ -12,12 +12,14 @@ test_multiply_dollar_5x2() {
   Expression *five = dollar( 5 );
   Expression *product = multiply( five, 2 );
   Expression *ten = dollar( 10 );
+  Money *reduced =  reduce( product, USD );
 
-  assert_true( equal( reduce( product, USD ), money_from( ten ) ) );
+  assert_true( equal( reduced, money_from( ten ) ) );
 
   free_expression( five );
   free_expression( product );
   free_expression( ten );
+  free_money( reduced );
 }
 
 
@@ -26,12 +28,14 @@ test_multiply_dollar_5x3() {
   Expression *five = dollar( 5 );
   Expression *product = multiply( five, 3 );
   Expression *fifteen = dollar( 15 );
+  Money *reduced =  reduce( product, USD );
 
-  assert_true( equal( reduce( product, USD ), money_from( fifteen ) ) );
+  assert_true( equal( reduced, money_from( fifteen ) ) );
 
   free_expression( five );
   free_expression( product );
   free_expression( fifteen );
+  free_money( reduced );
 }
 
 
