@@ -20,7 +20,7 @@ test_plus_returns_sum() {
 
   free_expression( five );
   free_expression( addend_five );
-  //free( result);
+  free_expression( result );
 }
 
 
@@ -37,8 +37,8 @@ test_reduce_sum() {
   free_expression( three_usd );
   free_expression( four_usd );
   free_expression( seven_usd );
-  //free( exp );
-  //free( result );
+  free_expression( exp );
+  free_money( result );
 }
 
 
@@ -53,7 +53,7 @@ test_reduce_different_currency() {
 
   free_expression( two_franc );
   free_expression( one_dollar );
-  //free( result );
+  free_money( result );
 }
 
 
@@ -64,13 +64,15 @@ test_mixed_addition() {
   Expression *ten_usd = dollar( 10 );
 
   add_rate( CHF, USD, 2 );
-  Money *result = reduce( plus( five_bucks, ten_francs ), USD );
+  Expression *exp = plus( five_bucks, ten_francs );
+  Money *result = reduce( exp, USD );
   assert_true( equal( money_from( ten_usd ), result ) );
 
   free_expression( five_bucks );
   free_expression( ten_francs );
   free_expression( ten_usd );
-  //free( result );
+  free_expression( exp );
+  free_money( result );
 }
 
 
@@ -81,14 +83,17 @@ test_multiple_addition() {
   Expression *fifteen_bucks = dollar( 15 );
 
   add_rate( CHF, USD, 2 );
-
-  Money *result = reduce( plus( plus( five_bucks, ten_francs ), five_bucks ), USD );
+  Expression *exp1 = plus( five_bucks, ten_francs );
+  Expression *exp2 = plus( exp1, five_bucks );
+  Money *result = reduce( exp2, USD );
   assert_true( equal( money_from( fifteen_bucks ), result ) );
 
   free_expression( five_bucks );
   free_expression( ten_francs );
   free_expression( fifteen_bucks );
-  //free( result );
+  free_expression( exp1 );
+  free_expression( exp2 );
+  free_money( result );
 }
 
 
@@ -100,13 +105,17 @@ test_addition_multiply() {
 
   add_rate( CHF, USD, 2 );
 
-  Money *result = reduce( multiply( plus( five_bucks, ten_francs ), 2 ), USD );
+  Expression *exp1 = plus( five_bucks, ten_francs );
+  Expression *exp2 = multiply( exp1, 2 );
+  Money *result = reduce( exp2, USD );
   assert_true( equal( money_from( twenty_bucks ), result ) );
 
   free_expression( five_bucks );
   free_expression( ten_francs );
   free_expression( twenty_bucks );
-  //free( result );
+  free_expression( exp1 );
+  free_expression( exp2 );
+  free_money( result );
 }
 
 

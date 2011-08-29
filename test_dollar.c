@@ -16,7 +16,7 @@ test_multiply_dollar_5x2() {
   assert_true( equal( reduce( product, USD ), money_from( ten ) ) );
 
   free_expression( five );
-  //free( product );
+  free_expression( product );
   free_expression( ten );
 }
 
@@ -30,7 +30,7 @@ test_multiply_dollar_5x3() {
   assert_true( equal( reduce( product, USD ), money_from( fifteen ) ) );
 
   free_expression( five );
-  //free( product );
+  free_expression( product );
   free_expression( fifteen );
 }
 
@@ -38,14 +38,18 @@ test_multiply_dollar_5x3() {
 static void
 test_multiply_dollar_5x3x3() {
   Expression *five = dollar( 5 );
-  Expression *product = multiply( multiply( five, 3 ), 3 );
+  Expression *product1 = multiply( five, 3 );
+  Expression *product2 = multiply( product1, 3 );
   Expression *fortyfive = dollar( 45 );
+  Money *reduced = reduce( product2, USD );
 
-  assert_true( equal( reduce( product, USD ), money_from( fortyfive ) ) );
+  assert_true( equal( reduced, money_from( fortyfive ) ) );
 
   free_expression( five );
-  //free( product );
+  free_expression( product1 );
+  free_expression( product2 );
   free_expression( fortyfive );
+  free_money( reduced );
 }
 
 
@@ -79,8 +83,8 @@ test_simple_addition() {
 
   free_expression( five );
   free_expression( addend_five );
-  //free( sum );
-  //free( reduced );
+  free_expression( sum );
+  free_money( reduced );
   free_expression( ten );
 }
 

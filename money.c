@@ -84,6 +84,12 @@ free_expression( Expression *exp ) {
 }
 
 
+void
+free_money( Money *money ) {
+  free( ( MoneyProtected * ) money );
+}
+
+
 /*
  * Local variables:
  * c-basic-offset: 2
